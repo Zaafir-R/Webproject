@@ -110,3 +110,7 @@ C:\Users\zaafi\source\repos\Zaafir-R\Webproject\obj\Debug\WebPortal.csproj.CoreC
 C:\Users\zaafi\source\repos\Zaafir-R\Webproject\obj\Debug\WebPortal.csproj.CopyComplete
 C:\Users\zaafi\source\repos\Zaafir-R\Webproject\obj\Debug\WebPortal.dll
 C:\Users\zaafi\source\repos\Zaafir-R\Webproject\obj\Debug\WebPortal.pdb
+C:\Users\zaafi\Source\Repos\Zaafir-R\Webproject\bin\EntityFramework.dll
+C:\Users\zaafi\Source\Repos\Zaafir-R\Webproject\bin\EntityFramework.SqlServer.dll
+C:\Users\zaafi\Source\Repos\Zaafir-R\Webproject\bin\EntityFramework.xml
+C:\Users\zaafi\Source\Repos\Zaafir-R\Webproject\bin\EntityFramework.SqlServer.xml

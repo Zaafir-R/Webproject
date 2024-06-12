@@ -129,6 +129,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\UserStatusController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -211,10 +212,12 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Contact\Aboutus.cshtml" />
+    <Content Include="Views\UserStatus\Register.cshtml" />
+    <Content Include="Views\UserStatus\UserstatusList.cshtml" />
+    <Content Include="Views\UserStatus\Userstatusedit.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
-    <Content Include="Views\User\UserstatusList.cshtml" />
-    <Content Include="Views\User\Userstatusedit.cshtml" />
-    <Content Include="Views\User\Userstatusdelete.cshtml" />
+    <Content Include="Views\User\UsersList.cshtml" />
+    <Content Include="Views\User\Useredit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

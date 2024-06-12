@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Register";
+}
+<form action="/userstatus/register" method="post">
+    <div class="row">
+
+        <div class="row">
+            <div class="col-sm-12 text-center form-title">
+                <h1>Update/Save User status</h1>
+                <p></p>
+            </div>
+            @if (ViewBag.Message != null)
+            {
+                <div class="col-sm-12">
+                    <div class="alert alert-success" role="alert">
+                        @ViewBag.Message
+                    </div>
+                </div>
+            }
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="email"><b>Code</b></label>
+                    <input class="form-control full-input" type="text" placeholder="Enter Code" name="Code" id="Code" required>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="Name"><b>Name</b></label>
+                    <input class="form-control full-input" type="text" placeholder="Enter Code" name="Name" id="Name" required>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="email"><b>Description</b></label>
+                    <textarea class="form-control full-input" type="text" placeholder="Enter Description" name="Description" id="Description" required></textarea>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <button class="form-control btn-success" type="submit">Register</button>
+            </div>
+        </div>
+            
+    </div>
+
+</form>

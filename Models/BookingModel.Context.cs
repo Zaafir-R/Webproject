@@ -25,7 +25,7 @@ namespace WebPortal.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserStatu> UserStatus { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

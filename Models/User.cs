@@ -20,8 +20,7 @@ namespace WebPortal.Models
         public string Username { get; set; }
         public string Password { get; set; }
         public int UserStatusId { get; set; }
-        public int UserRoleId { get; set; }
-        public int UserTypeId { get; set; }
+        public Nullable<int> UserRoleId { get; set; }
         public Nullable<int> UserGroupId { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }

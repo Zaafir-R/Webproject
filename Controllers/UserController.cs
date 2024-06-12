@@ -22,21 +22,23 @@ namespace WebPortal.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(UserStatu userstatus)
+        public ActionResult Register(User User)
         {
 
             try
             {
                 booking_dbEntities db = new booking_dbEntities();
-                userstatus.CreatedBy = "Webservice";
-                userstatus.LastModifiedBy = "Webservice";
-                userstatus.CreatedDate = DateTime.Now;
-                userstatus.LastModifiedDate = DateTime.Now;
+                User.Username = User.Firstname + User.Surname;
+                User.Password = "123456789";
+                User.CreatedBy = "Webservice";
+                User.LastModifiedBy = "Webservice";
+                User.CreatedDate = DateTime.Now;
+                User.LastModifiedDate = DateTime.Now;
 
-                db.UserStatus.Add(userstatus);
+                db.Users.Add(User);
                 db.SaveChanges();
 
-                ViewBag.Message = "Userstatus Saved";
+                ViewBag.Message = "User Saved";
             }
             catch(Exception ex)
             {
@@ -47,54 +49,56 @@ namespace WebPortal.Controllers
 
         }
 
-        public ActionResult UserstatusList() 
+        public ActionResult UsersList() 
         {
             
             var entities = new booking_dbEntities();
 
-            var userstatuslist = entities.UserStatus.ToList();
-            return View(userstatuslist);
+            var Userlist = entities.Users.ToList();
+            return View(Userlist);
 
         }
 
         private booking_dbEntities db = new booking_dbEntities();
 
         [HttpGet]
-        public ActionResult Userstatusedit(int id)
+        public ActionResult Useredit(int id)
 
         {
             
-            UserStatu userstatus = db.UserStatus.Find(keyValues: id);
-            return View(userstatus);
+            User User = db.Users.Find(keyValues: id);
+            return View(User);
 
         }
 
         [HttpPost]
 
-        public ActionResult Userstatusedit( UserStatu userstatus)
+        public ActionResult Useredit( User User)
         {
             if (ModelState.IsValid)
             {
-                userstatus.CreatedBy = "Webservice";
-                userstatus.LastModifiedBy = "Webservice";
-                userstatus.CreatedDate = DateTime.Now;
-                userstatus.LastModifiedDate = DateTime.Now;
+                User.Username = User.Firstname + User.Surname;
+                User.Password = "123456789";
+                User.CreatedBy = "Webservice";
+                User.LastModifiedBy = "Webservice";
+                User.CreatedDate = DateTime.Now;
+                User.LastModifiedDate = DateTime.Now;
 
-                db.UserStatus.AddOrUpdate(userstatus);
+                db.Users.AddOrUpdate(User);
                 db.SaveChanges();
-                return RedirectToAction("UserstatusList");
+                return RedirectToAction("UserList");
 
             }
-            return View(userstatus);
+            return View(User);
         }
 
         [HttpGet]
-        public ActionResult Userstatusdelete(int id)
+        public ActionResult Userdelete(int id)
         {
-            UserStatu userstatus = db.UserStatus.Find(keyValues: id);
-            db.UserStatus.Remove(userstatus);
+            User User = db.Users.Find(keyValues: id);
+            db.Users.Remove(User);
             db.SaveChanges();
-            return RedirectToAction("UserstatusList");
+            return RedirectToAction("UsersList");
 
         }
         

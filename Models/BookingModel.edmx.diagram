@@ -5,8 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="f42ec5c568344ed69ce82b384aa59f9c" Name="Diagram1">
-        <EntityTypeShape EntityType="booking_dbModel.User" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="booking_dbModel.UserStatu" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="booking_dbModel.User" Width="1.5" PointX="5.125" PointY="0.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -151,6 +151,9 @@
       <DependentUpon>BookingModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\IUserStatus.cs" />
+    <Compile Include="Models\User.cs">
+      <DependentUpon>BookingModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserStatu.cs">
       <DependentUpon>BookingModel.tt</DependentUpon>
     </Compile>
@@ -209,6 +212,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Contact\Aboutus.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\User\UserstatusList.cshtml" />
+    <Content Include="Views\User\Userstatusedit.cshtml" />
+    <Content Include="Views\User\Userstatusdelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

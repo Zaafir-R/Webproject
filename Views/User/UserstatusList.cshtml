@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Userstatus List";
+    string[] Tableheaders = new string[] { "UserStatusId"
+      ,"Code"
+      ,"Name"
+      ,"Description"
+      ,"CreatedDate"
+      ,"LastModifiedDate"
+      ,"CreatedBy"
+      ,"LastModifiedBy"
+      ,"IsDeleted"};
+}
+<div>
+    <div class="row">
+        <div class="col-sm-12 text-center form-title">
+            <h1>Userstatus List</h1>
+
+        </div>
+    </div>
+    <table class="table table-bordered table-dark">
+        <thead>
+            <tr>
+                @{
+                    foreach (var head in Tableheaders)
+                    {
+                        <th>
+                            @head
+                        </th>
+                    }
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.UserStatusId</td>
+                        <td>@item.Code</td>
+                        <td> @item.Name</td>
+                        <td>@item.Description</td>
+                        <td>@item.CreatedDate</td>
+                        <td>@item.LastModifiedDate</td>
+                        <td>@item.CreatedBy</td>
+                        <td>@item.LastModifiedBy</td>
+                        <td><a href="/user/userstatusedit?id=@item.UserStatusId">Edit</a></td>
+                        <td><a href="/user/userstatusdelete?id=@item.UserStatusId">Delete</a></td>
+
+                    </tr>
+
+                }
+
+            }
+
+        </tbody>
+
+    </table>
+
+</div>

@@ -1,0 +1,6 @@
+﻿Generated model file: BookingModel.edmx.
+Loading metadata from the database took 00:00:00.5154078.
+Generating the model took 00:00:02.3369643.
+Generated model file: BookingModel.edmx.
+Loading metadata from the database took 00:00:00.3484180.
+Generating the model took 00:00:01.8779738.

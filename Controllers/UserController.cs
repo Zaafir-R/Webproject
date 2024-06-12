@@ -19,24 +19,29 @@ namespace WebPortal.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(UserStatus userstatus)
+        public ActionResult Register(UserStatu userstatus)
         {
-            booking_dbEntities db = new booking_dbEntities();
-            userstatus.CreatedBy = "Webservice";
-            userstatus.LastModifiedBy = "Webservice";
-            userstatus.CreatedDate = DateTime.Now;
-            userstatus.LastModifiedDate = DateTime.Now;
 
-            db.UserStatus.Add(userstatus);
-            db.SaveChanges();
+            try
+            {
+                booking_dbEntities db = new booking_dbEntities();
+                userstatus.CreatedBy = "Webservice";
+                userstatus.LastModifiedBy = "Webservice";
+                userstatus.CreatedDate = DateTime.Now;
+                userstatus.LastModifiedDate = DateTime.Now;
+
+                db.UserStatus.Add(userstatus);
+                db.SaveChanges();
+
+                ViewBag.Message = "Userstatus Saved";
+            }
+            catch(Exception ex)
+            {
+                ViewBag.Message = "Could not save the record.( " + ex.Message + ")";
+            }
             
             return View();
-                
 
-               
-            
-
-            
         }
     }
 }

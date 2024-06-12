@@ -151,10 +151,7 @@
       <DependentUpon>BookingModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\IUserStatus.cs" />
-    <Compile Include="Models\User.cs">
-      <DependentUpon>BookingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UserStatus.cs">
+    <Compile Include="Models\UserStatu.cs">
       <DependentUpon>BookingModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

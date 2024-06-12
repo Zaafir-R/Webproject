@@ -1,30 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="booking_dbModelStoreContainer" CdmEntityContainer="booking_dbEntities">
-    <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="booking_dbModel.User">
-        <MappingFragment StoreEntitySet="User">
-          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
-          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-          <ScalarProperty Name="Phone" ColumnName="Phone" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="UserGroupId" ColumnName="UserGroupId" />
-          <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
-          <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
-          <ScalarProperty Name="UserStatusId" ColumnName="UserStatusId" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="Username" ColumnName="Username" />
-          <ScalarProperty Name="Surname" ColumnName="Surname" />
-          <ScalarProperty Name="Firstname" ColumnName="Firstname" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="UserStatus1">
-      <EntityTypeMapping TypeName="booking_dbModel.UserStatus">
+    <EntitySetMapping Name="UserStatus">
+      <EntityTypeMapping TypeName="booking_dbModel.UserStatu">
         <MappingFragment StoreEntitySet="UserStatus">
           <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
           <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />

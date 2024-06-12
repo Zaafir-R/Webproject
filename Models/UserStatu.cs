@@ -12,19 +12,12 @@ namespace WebPortal.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class UserStatu
     {
-        public int UserId { get; set; }
-        public string Firstname { get; set; }
-        public string Surname { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
         public int UserStatusId { get; set; }
-        public int UserRoleId { get; set; }
-        public int UserTypeId { get; set; }
-        public Nullable<int> UserGroupId { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
+        public string Code { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public System.DateTime LastModifiedDate { get; set; }
         public string CreatedBy { get; set; }

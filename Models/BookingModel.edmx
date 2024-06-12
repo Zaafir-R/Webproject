@@ -5,39 +5,9 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="booking_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Firstname" Type="varchar" MaxLength="50" />
-          <Property Name="Surname" Type="varchar" MaxLength="50" />
-          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="UserStatusId" Type="int" Nullable="false" />
-          <Property Name="UserRoleId" Type="int" Nullable="false" />
-          <Property Name="UserTypeId" Type="int" Nullable="false" />
-          <Property Name="UserGroupId" Type="int" />
-          <Property Name="Email" Type="varchar" MaxLength="500" />
-          <Property Name="Phone" Type="varchar" MaxLength="50" />
-          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
-          <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
-          <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="LastModifiedBy" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="IsDeleted" Type="bit" Nullable="false" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'booking_db.dbo.UserStatus' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UserStatus">
           <Key>
             <PropertyRef Name="UserStatusId" />
-            <PropertyRef Name="Code" />
-            <PropertyRef Name="Name" />
-            <PropertyRef Name="CreatedDate" />
-            <PropertyRef Name="LastModifiedDate" />
-            <PropertyRef Name="CreatedBy" />
-            <PropertyRef Name="LastModifiedBy" />
-            <PropertyRef Name="IsDeleted" />
           </Key>
           <Property Name="UserStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
@@ -50,60 +20,18 @@ warning 6002: The table/view 'booking_db.dbo.UserStatus' does not have a primary
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityContainer Name="booking_dbModelStoreContainer">
-          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserStatus" EntityType="Self.UserStatus" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [UserStatus].[UserStatusId] AS [UserStatusId], 
-    [UserStatus].[Code] AS [Code], 
-    [UserStatus].[Name] AS [Name], 
-    [UserStatus].[Description] AS [Description], 
-    [UserStatus].[CreatedDate] AS [CreatedDate], 
-    [UserStatus].[LastModifiedDate] AS [LastModifiedDate], 
-    [UserStatus].[CreatedBy] AS [CreatedBy], 
-    [UserStatus].[LastModifiedBy] AS [LastModifiedBy], 
-    [UserStatus].[IsDeleted] AS [IsDeleted]
-    FROM [dbo].[UserStatus] AS [UserStatus]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="UserStatus" EntityType="Self.UserStatus" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="booking_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="booking_dbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Users" EntityType="booking_dbModel.User" />
-          <EntitySet Name="UserStatus1" EntityType="booking_dbModel.UserStatus" />
+          <EntitySet Name="UserStatus" EntityType="booking_dbModel.UserStatu" />
         </EntityContainer>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="UserStatusId" Type="Int32" Nullable="false" />
-          <Property Name="UserRoleId" Type="Int32" Nullable="false" />
-          <Property Name="UserTypeId" Type="Int32" Nullable="false" />
-          <Property Name="UserGroupId" Type="Int32" />
-          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UserStatus">
+        <EntityType Name="UserStatu">
           <Key>
             <PropertyRef Name="UserStatusId" />
-            <PropertyRef Name="Code" />
-            <PropertyRef Name="Name" />
-            <PropertyRef Name="CreatedDate" />
-            <PropertyRef Name="LastModifiedDate" />
-            <PropertyRef Name="CreatedBy" />
-            <PropertyRef Name="LastModifiedBy" />
-            <PropertyRef Name="IsDeleted" />
           </Key>
           <Property Name="UserStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -121,30 +49,8 @@ warning 6002: The table/view 'booking_db.dbo.UserStatus' does not have a primary
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="booking_dbModelStoreContainer" CdmEntityContainer="booking_dbEntities">
-        <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="booking_dbModel.User">
-              <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="UserGroupId" ColumnName="UserGroupId" />
-                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
-                <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
-                <ScalarProperty Name="UserStatusId" ColumnName="UserStatusId" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserStatus1">
-            <EntityTypeMapping TypeName="booking_dbModel.UserStatus">
+          <EntitySetMapping Name="UserStatus">
+            <EntityTypeMapping TypeName="booking_dbModel.UserStatu">
               <MappingFragment StoreEntitySet="UserStatus">
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />

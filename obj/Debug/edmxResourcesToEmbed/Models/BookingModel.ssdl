@@ -46,8 +46,18 @@ warning 6002: The table/view 'booking_db.dbo.UserStatus' does not have a primary
   </EntityType>
   <EntityContainer Name="booking_dbModelStoreContainer">
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="UserStatus" EntityType="Self.UserStatus" store:Type="Tables" Schema="dbo">
-      <DefiningQuery />
+    <EntitySet Name="UserStatus" EntityType="Self.UserStatus" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [UserStatus].[UserStatusId] AS [UserStatusId], 
+    [UserStatus].[Code] AS [Code], 
+    [UserStatus].[Name] AS [Name], 
+    [UserStatus].[Description] AS [Description], 
+    [UserStatus].[CreatedDate] AS [CreatedDate], 
+    [UserStatus].[LastModifiedDate] AS [LastModifiedDate], 
+    [UserStatus].[CreatedBy] AS [CreatedBy], 
+    [UserStatus].[LastModifiedBy] AS [LastModifiedBy], 
+    [UserStatus].[IsDeleted] AS [IsDeleted]
+    FROM [dbo].[UserStatus] AS [UserStatus]</DefiningQuery>
     </EntitySet>
   </EntityContainer>
 </Schema>

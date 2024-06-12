@@ -27,7 +27,7 @@ namespace WebPortal.Controllers
             userstatus.CreatedDate = DateTime.Now;
             userstatus.LastModifiedDate = DateTime.Now;
 
-            db.UserStatus.Add(userstatus);
+            db.use.Add(userstatus);
             db.SaveChanges();
             
             return View();

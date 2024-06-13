@@ -218,6 +218,7 @@
     <Content Include="Views\User\UserRegister.cshtml" />
     <Content Include="Views\User\UsersList.cshtml" />
     <Content Include="Views\User\Useredit.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,7 +10,14 @@ namespace WebPortal.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            if (Session["UserID"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return Redirect("User/Login");
+            }
         }
 
     }

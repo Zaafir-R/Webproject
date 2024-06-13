@@ -99,13 +99,36 @@ namespace WebPortal.Controllers
             return RedirectToAction("UsersList");
 
         }
-        
-        
-       // public ActionResult Userstatusdelete(UserStatu userstatus) 
-        //{
-        //    db.UserStatus.Remove(userstatus);
-        //    db.SaveChanges();
-        //    return RedirectToAction("UserstatusList");
-        //}
+
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+
+        public ActionResult Login(User user) 
+        {
+            booking_dbEntities db = new booking_dbEntities();
+
+            var obj = db.Users.FirstOrDefault(a => a.Username.Equals(user.Username) && a.Password.Equals(user.Password));
+            if (obj != null)
+            {
+                Session["UserId"] = obj.UserId.ToString();
+                Session["Username"] = obj.Username.ToString();
+                return RedirectToAction("Index","Home");
+            }
+            else 
+            {
+                ModelState.AddModelError("", "Invalid username or password.");
+            }
+
+            return View(user);
+
+        }
+
     }
+
+   
 }

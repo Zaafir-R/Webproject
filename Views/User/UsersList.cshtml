@@ -1,20 +1,6 @@
 ﻿@{
     ViewBag.Title = "Users List";
-    string[] Tableheaders = new string[] { "UserId"
-      ,"Firstname"
-      ,"Surname"
-      ,"Username"
-      ,"Password"
-      ,"UserStatusId"
-      ,"UserRoleId"
-      ,"UserGroupId"
-      ,"Email"
-      ,"Phone"
-      ,"CreatedDate"
-      ,"LastModifiedDate"
-      ,"CreatedBy"
-      ,"LastModifiedBy"
-      };
+    
 }
 <div>
     <div class="row">
@@ -22,43 +8,57 @@
             <h1>User List</h1>
 
         </div>
+
     </div>
-    <table class="table table-bordered table-dark ">
+    <div style="display: flex; justify-content:flex-end">
+        <a href="/user/userregister" class="btn btn-primary btn-lg " role="button" aria-disabled="true">Add</a>
+
+    </div>
+
+
+
+    <table class="table table-bordered table-dark left">
         <thead>
             <tr>
-                @{
-                    foreach (var head in Tableheaders)
-                    {
-                        <th>
-                            @head
-                        </th>
-                    }
-                }
+                <th>
+                    Firstname
+                </th>
+                <th>
+                    Surnmame
+                </th>
+                <th>
+                    Username
+                </th>
+                <th>
+                    UserStatusId
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Phone Number
+                </th>
+                <th>
+                    Action
+                </th>
             </tr>
         </thead>
         <tbody>
             @{
                 foreach (var item in Model)
                 {
-                        <tr>
-                            <td>@item.UserId</td>
-                            <td>@item.Firstname</td>
-                            <td> @item.Surname</td>
-                            <td>@item.Username</td>
-                            <td>@item.Password</td>
-                            <td>@item.UserStatus</td>
-                            <td>@item.UserRoleId</td>
-                            <td>@item.UserGroupId</td>
-                            <td>@item.Email</td>
-                            <td>@item.Phone</td>
-                            <td>@item.CreatedDate</td>
-                            <td>@item.LastModifiedDate</td>
-                            <td>@item.CreatedBy</td>
-                            <td>@item.LastModifiedBy</td>
-                            <td><a href="/user/useredit?id=@item.UserId">Edit</a></td>
-                            <td><a href="/user/userdelete?id=@item.UserId">Delete</a></td>
+                    <tr>
 
-                        </tr>
+                        <td>@item.Firstname</td>
+                        <td> @item.Surname</td>
+                        <td>@item.Username</td>
+                        <td>@item.UserStatusId</td>
+                        <td>@item.Email</td>
+                        <td>@item.Phone</td>
+                        <td><a href="/user/useredit?id=@item.UserId">Edit</a> | <a href="/user/userdelete?id=@item.UserId">Delete</a></td>
+
+
+                    </tr>
 
                 }
 

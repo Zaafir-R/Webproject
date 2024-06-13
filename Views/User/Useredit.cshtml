@@ -1,7 +1,5 @@
-﻿@{
-    ViewBag.Title = "Edit";
-}
-<form action="/user/userstatusedit/@Model.UserId" method="post">
+﻿
+<form action="/user/useredit/" method="post">
 
     <div class="row">
 
@@ -21,41 +19,53 @@
             <div class="col-sm-12 col-md-6 col-lg-6">
                 <div class="form-group">
                     <label for="Firstname"><b>Firstname</b></label>
-                    <input class="form-control full-input" value="@Model.Firstname" type="text" placeholder="Enter Firstname" name="Firstname" id="Firstname" required>
+                    <input class="form-control full-input" value="@ViewBag.User.Firstname" type="text" placeholder="Enter Firstname" name="Firstname" id="Firstname" required>
                 </div>
             </div>
             <div class="col-sm-12 col-md-6 col-lg-6">
                 <div class="form-group">
                     <label for="Surname"><b>Surname</b></label>
-                    <input class="form-control full-input" value="@Model.Surname" type="text" placeholder="Enter Surname" name="Surname" id="Surname" required>
+                    <input class="form-control full-input" value="@ViewBag.User.Surname" type="text" placeholder="Enter Surname" name="Surname" id="Surname" required>
                 </div>
             </div>
             <div class="col-sm-12 col-md-6 col-lg-6">
                 <div class="form-group">
                     <label for="Email"><b>Email</b></label>
-                    <input class="form-control full-input" value="@Model.Email" type="text" placeholder="Enter Email" name="Email" id="Email" required>
+                    <input class="form-control full-input" value="@ViewBag.User.Email" type="text" placeholder="Enter Email" name="Email" id="Email" required>
                 </div>
             </div>
             <div class="col-sm-12 col-md-6 col-lg-6">
                 <div class="form-group">
                     <label for="Phone"><b>Phone</b></label>
-                    <input class="form-control full-input" value="@Model.Phone" type="text" placeholder="Enter Phone" name="Phone" id="Phone" required>
+                    <input class="form-control full-input" value="@ViewBag.User.Phone" type="text" placeholder="Enter Phone" name="Phone" id="Phone" required>
                 </div>
             </div>
 
             <div class="col-sm-12 col-md-6 col-lg-6">
-                <div class="dropdown">
-                    <button value="@Model.UserStatusId" class="btn btn-default dropdown-toggle" type="button" id="Userstatus" data-toggle="UserStatus" aria-haspopup="true" aria-expanded="true">
-                        Dropdown
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="UserStatus">
-                        <li><a href="#">hello</a></li>
-                        <li><a href="#">people</a></li>
-                        <li><a href="#">good</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">seperated kink</a></li>
-                    </ul>
+                <label for="UserStatus">UserStatus</label>
+
+                <select class="form-control full-input" name="UserStatusId" id="UserStatusId">
+                    @{
+                        foreach (var item in ViewBag.UserStatuslist)
+                        {
+                            if (item.UserStatusId == ViewBag.User.UserStatusId)
+                            {
+                                <option selected value="@item.UserStatusId">@item.Name</option>
+                            }
+                            else 
+                            { 
+                                <option value="@item.UserStatusId">@item.Name</option>
+                            }
+                        }
+                    }
+
+                </select>
+
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="Password"><b>Password</b></label>
+                    <input class="form-control full-input" Value ="@ViewBag.User.Password"type="text" placeholder="Enter Password" name="Password" id="Password" required>
                 </div>
             </div>
 
@@ -63,7 +73,7 @@
                 <div class="">
 
                     <button class="form-control btn-success" type="submit">Register</button>
-                    <input type="hidden" value="@Model.UserId" name="UserId" id="UserId">
+                    <input type="hidden" value="@ViewBag.User.UserId" name="UserId" id="UserId">
                 </div>
 
             </div>

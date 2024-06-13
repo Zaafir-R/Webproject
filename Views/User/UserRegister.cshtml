@@ -1,7 +1,7 @@
 ﻿@{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "User Register";
 }
-<form action="/user/register" method="post">
+<form action="/user/userregister" method="post">
 
     <div class="row">
 
@@ -46,43 +46,30 @@
             <div class="col-sm-12 col-md-6 col-lg-6">
                 <label for="UserStatus">UserStatus</label>
 
-                <select name="UserStatus" id="UserStatus">
-                    <option value="Active">Active</option>
-                    <option value="Inactive">Inactive</option>
-                    <option value="Pending">Pending</option>
-                    
+                <select class="form-control full-input" name="UserStatusId" id="UserStatusId">
+                    @{
+                        foreach (var item in Model)
+                        {
+                           <option value="@item.UserStatusId">@item.Name</option>
+                        }
+                    }
+
                 </select>
-                <!--<div class="dropdown" >
-        <button class="btn btn-default dropdown-toggle" type="button" id="Userstatus" data-toggle="UserStatus" aria-haspopup="true" aria-expanded="true">
-            Dropdown
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="UserStatus">
-            <li><a href="#">hello</a></li>
-            <li><a href="#">people</a></li>
-            <li><a href="#">good</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">seperated kink</a></li>
-        </ul>
-    </div>-->
+
             </div>
-                
-            
-                <div class="col-sm-12 col-md-6 col-lg-6">
 
-                    <button class="form-control btn-success" type="submit">Register</button>
-
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="Password"><b>Password</b></label>
+                    <input class="form-control full-input" type="text" placeholder="Enter Password" name="Password" id="Password" required>
                 </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
 
-                   
-                
-                
-           
+                <button class="form-control btn-success" type="submit">Register</button>
+
+            </div>
         </div>
-
-
     </div>
-            
-    
 
 </form>

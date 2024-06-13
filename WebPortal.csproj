@@ -215,12 +215,13 @@
     <Content Include="Views\UserStatus\Register.cshtml" />
     <Content Include="Views\UserStatus\UserstatusList.cshtml" />
     <Content Include="Views\UserStatus\Userstatusedit.cshtml" />
-    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\User\UserRegister.cshtml" />
     <Content Include="Views\User\UsersList.cshtml" />
     <Content Include="Views\User\Useredit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -16,20 +16,21 @@ namespace WebPortal.Controllers
 
     {
 
-        public ActionResult Register()
+        public ActionResult UserRegister()
         {
-           return View();
+            var entities = new booking_dbEntities();
+
+            var userstatuslist = entities.UserStatus.ToList();
+            return View(userstatuslist);  
         }
 
         [HttpPost]
-        public ActionResult Register(User User)
+        public ActionResult UserRegister(User User)
         {
-
             try
             {
                 booking_dbEntities db = new booking_dbEntities();
-                User.Username = User.Firstname + User.Surname;
-                User.Password = "123456789";
+                User.Username = User.Email;
                 User.CreatedBy = "Webservice";
                 User.LastModifiedBy = "Webservice";
                 User.CreatedDate = DateTime.Now;
@@ -37,21 +38,17 @@ namespace WebPortal.Controllers
 
                 db.Users.Add(User);
                 db.SaveChanges();
-
                 ViewBag.Message = "User Saved";
             }
             catch(Exception ex)
             {
                 ViewBag.Message = "Could not save the record.( " + ex.Message + ")";
             }
-
-            return View();
-
+            return RedirectToAction("Userslist");
         }
 
-        public ActionResult UsersList() 
-        {
-            
+        public ActionResult UsersList()
+        { 
             var entities = new booking_dbEntities();
 
             var Userlist = entities.Users.ToList();
@@ -63,17 +60,18 @@ namespace WebPortal.Controllers
 
         [HttpGet]
         public ActionResult Useredit(int id)
-
         {
-            
+            var userstatuslist = db.UserStatus.ToList();
+           
             User User = db.Users.Find(keyValues: id);
-            return View(User);
-
+            ViewBag.UserStatuslist = userstatuslist; 
+            ViewBag.User = User;
+            return View();
         }
 
         [HttpPost]
 
-        public ActionResult Useredit( User User)
+        public ActionResult Useredit(User User)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +84,7 @@ namespace WebPortal.Controllers
 
                 db.Users.AddOrUpdate(User);
                 db.SaveChanges();
-                return RedirectToAction("UserList");
+                return RedirectToAction("UsersList");
 
             }
             return View(User);

@@ -44,7 +44,7 @@ namespace WebPortal.Controllers
             {
                 ViewBag.Message = "Could not save the record.( " + ex.Message + ")";
             }
-            return RedirectToAction("Userslist");
+            return View();
         }
 
         public ActionResult UsersList()

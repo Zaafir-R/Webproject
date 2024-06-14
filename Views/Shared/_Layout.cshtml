@@ -20,6 +20,16 @@
                 <li><a href="/user/userslist">Users</a></li>
                 <li><a href="/userstatus/userstatuslist">Userstatus</a></li>
             </ul>
+            @{ if (Session["Username"] != null)
+                {
+                        <p class="navbar-text navbar-right">
+                            Hi @Session["Firstname"] @Session["Surname"]
+                            <a href="/user/logout">Log out</a>
+                        </p>
+
+                }
+
+            }
         </div>
     </nav>
 

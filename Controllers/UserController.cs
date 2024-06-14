@@ -21,7 +21,7 @@ namespace WebPortal.Controllers
             var entities = new booking_dbEntities();
 
             var userstatuslist = entities.UserStatus.ToList();
-            return View(userstatuslist);  
+            return View(userstatuslist);
         }
 
         [HttpPost]
@@ -40,7 +40,7 @@ namespace WebPortal.Controllers
                 db.SaveChanges();
                 ViewBag.Message = "User Saved";
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ViewBag.Message = "Could not save the record.( " + ex.Message + ")";
             }
@@ -48,7 +48,7 @@ namespace WebPortal.Controllers
         }
 
         public ActionResult UsersList()
-        { 
+        {
             var entities = new booking_dbEntities();
 
             var Userlist = entities.Users.ToList();
@@ -62,9 +62,9 @@ namespace WebPortal.Controllers
         public ActionResult Useredit(int id)
         {
             var userstatuslist = db.UserStatus.ToList();
-           
+
             User User = db.Users.Find(keyValues: id);
-            ViewBag.UserStatuslist = userstatuslist; 
+            ViewBag.UserStatuslist = userstatuslist;
             ViewBag.User = User;
             return View();
         }
@@ -75,8 +75,8 @@ namespace WebPortal.Controllers
         {
             if (ModelState.IsValid)
             {
-                User.Username = User.Firstname + User.Surname;
-                User.Password = "123456789";
+                User.Username = User.Email;
+                
                 User.CreatedBy = "Webservice";
                 User.LastModifiedBy = "Webservice";
                 User.CreatedDate = DateTime.Now;
@@ -108,9 +108,10 @@ namespace WebPortal.Controllers
 
         [HttpPost]
 
-        public ActionResult Login(User user) 
+        public ActionResult Login(User user)
         {
             booking_dbEntities db = new booking_dbEntities();
+
 
             var obj = db.Users.FirstOrDefault(a => a.Username.Equals(user.Username) && a.Password.Equals(user.Password));
             if (obj != null)
@@ -119,9 +120,9 @@ namespace WebPortal.Controllers
                 Session["Username"] = obj.Username.ToString();
                 Session["Firstname"] = obj.Firstname.ToString();
                 Session["Surname"] = obj.Surname.ToString();
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
-            else 
+            else
             {
                 ModelState.AddModelError("", "Invalid username or password.");
             }
@@ -130,7 +131,46 @@ namespace WebPortal.Controllers
 
         }
 
+        public ActionResult Logout()
+        {
+            Session["UserId"] = null;
+            Session["Username"] = null;
+            Session["Firstname"] = null;
+            Session["Surname"] = null;
+            return RedirectToAction("login");
+
+        }
+
+        public ActionResult Signup()
+        {
+            return View();
+
+        }
+
+        [HttpPost]
+        public ActionResult Signup(User User) 
+        {
+            try
+            {
+                booking_dbEntities db = new booking_dbEntities();
+                User.Username = User.Email;
+                User.CreatedBy = "Webservice";
+                User.LastModifiedBy = "Webservice";
+                User.CreatedDate = DateTime.Now;
+                User.LastModifiedDate = DateTime.Now;
+                User.UserStatusId = 2;
+
+                db.Users.Add(User);
+                db.SaveChanges();
+                ViewBag.Message = "User Saved";
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = "Could not save the record.( " + ex.Message + ")";
+            }
+            return View();
+        }
     }
 
-   
+
 }

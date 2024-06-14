@@ -117,6 +117,8 @@ namespace WebPortal.Controllers
             {
                 Session["UserId"] = obj.UserId.ToString();
                 Session["Username"] = obj.Username.ToString();
+                Session["Firstname"] = obj.Firstname.ToString();
+                Session["Surname"] = obj.Surname.ToString();
                 return RedirectToAction("Index","Home");
             }
             else 

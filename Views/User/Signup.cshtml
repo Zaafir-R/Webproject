@@ -1,10 +1,11 @@
 ﻿@{
     ViewBag.Title = "User Sign up";
+    Layout = "~/Views/Shared/NoNav_layout.cshtml";
 }
 
 
 <div class="centered-box">
-    <form action="/user/userregister" method="post">
+    <form action="/user/signup" method="post">
         <div class="row">
             <div class="col-sm-12 text-center form-title">
                 <h1>Sign up</h1>
@@ -18,6 +19,20 @@
                     </div>
                 </div>
             }
+
+            @if (ViewBag.Errors != null)
+            {
+                foreach (string Error in ViewBag.Errors)
+                {
+                    <div class="col-sm-12">
+                        <div class="alert alert-success" role="alert">
+                            @Error
+                        </div>
+                    </div>
+                }
+
+            }
+
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <label style="font-size:larger" class="col-form-label" for="Firstname"><b>Firstname</b></label>
                 <input class="form-control full-input" type="text" placeholder="Enter Firstname" name="Firstname" id="Firstname" required>
@@ -35,7 +50,7 @@
                 <label style="font-size:larger" class="col-form-label" for="Phone"><b>Phone</b></label>
                 <input class="form-control full-input" type="text" placeholder="Enter Phone" name="Phone" id="Phone" required>
             </div>
-            
+
 
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <label style="font-size:larger" class="col-form-label" for="Password"><b>Password</b></label>
@@ -43,15 +58,18 @@
             </div>
 
             <div class="col-lg-12 col-md-12 col-sm-12">
-                <label style="font-size:larger" class="col-form-label" for="Confirm Password"><b>Confirm Password</b></label>
-                <input class="form-control full-input" type="text" placeholder="Confirm Password" name="Confirm Password" id="Confirm Password" required>
+                <label style="font-size:larger" class="col-form-label" for="ConfirmPassword"><b>Confirm Password</b></label>
+                <input class="form-control full-input" type="text" placeholder="Confirm Password" name="ConfirmPassword" id="ConfirmPassword" required>
             </div>
-            @{
-                var password = 
-            }
+
             <div class="col-sm-12 col-md-6 col-lg-6">
                 <br />
-                <button disabled class="form-control btn-success full-input" type="submit">Sign up</button>
+                <button class="form-control btn-success full-input" type="submit">Sign up</button>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <br />
+                <a href="/user/login"></>Log in</a>
 
             </div>
         </div>

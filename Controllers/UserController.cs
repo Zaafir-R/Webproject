@@ -26,25 +26,35 @@ namespace WebPortal.Controllers
 
         [HttpPost]
         public ActionResult UserRegister(User User)
-        {
+        { 
+            booking_dbEntities db = new booking_dbEntities();
+                var userstatuslist = db.UserStatus.ToList();
             try
             {
-                booking_dbEntities db = new booking_dbEntities();
                 User.Username = User.Email;
                 User.CreatedBy = "Webservice";
                 User.LastModifiedBy = "Webservice";
                 User.CreatedDate = DateTime.Now;
                 User.LastModifiedDate = DateTime.Now;
 
-                db.Users.Add(User);
-                db.SaveChanges();
-                ViewBag.Message = "User Saved";
+                var obj = db.Users.Where(a => a.Email.Equals(User.Email));
+                if (!obj.Any())
+                {
+                    db.Users.Add(User);
+                    db.SaveChanges();
+                    ViewBag.Message = "User Saved";
+                }
+                else
+                {
+                    ViewBag.Message = User.Email +" already Exists";
+                }
+                
             }
             catch (Exception ex)
             {
                 ViewBag.Message = "Could not save the record.( " + ex.Message + ")";
             }
-            return View();
+            return View(userstatuslist);
         }
 
         public ActionResult UsersList()
@@ -100,7 +110,7 @@ namespace WebPortal.Controllers
 
         }
 
-
+        [HttpGet]
         public ActionResult Login()
         {
             return View();
@@ -141,34 +151,74 @@ namespace WebPortal.Controllers
 
         }
 
+
+        [HttpGet]
         public ActionResult Signup()
         {
-            return View();
+            return View(new SignupViewModel());
 
         }
 
+
         [HttpPost]
-        public ActionResult Signup(User User) 
+        public ActionResult Signup(SignupViewModel model) 
         {
+            booking_dbEntities db = new booking_dbEntities();
             try
             {
-                booking_dbEntities db = new booking_dbEntities();
-                User.Username = User.Email;
-                User.CreatedBy = "Webservice";
-                User.LastModifiedBy = "Webservice";
-                User.CreatedDate = DateTime.Now;
-                User.LastModifiedDate = DateTime.Now;
-                User.UserStatusId = 2;
+                
+                if (ModelState.IsValid)
+                {
+                    ViewBag.SignupViewModel = model;
+                    
 
-                db.Users.Add(User);
-                db.SaveChanges();
-                ViewBag.Message = "User Saved";
+                    User user = new User();
+                    user.Firstname = model.Firstname;
+                    user.Surname = model.Surname;
+                    user.Username = model.Email;
+                    user.Email = model.Email;
+                    user.Phone = model.Phone;
+                    user.CreatedBy = "Webservice";
+                    user.LastModifiedBy = "Webservice";
+                    user.CreatedDate = DateTime.Now;
+                    user.LastModifiedDate = DateTime.Now;
+                    user.UserStatusId = 2;
+                    user.Password = model.Password;
+
+                    var obj = db.Users.Where(a => a.Email.Equals(user.Email));
+                    if (!obj.Any())
+                    {
+                        db.Users.Add(user);
+                        db.SaveChanges();
+                        ViewBag.Message = "User Saved";
+                    }
+                    else
+                    {
+                        ViewBag.Message = user.Email + " already Exists";
+                    }
+                    
+                }
+                else {
+
+                    ViewBag.Errors = GetModelStateErrors(ModelState);
+
+                }
             }
             catch (Exception ex)
             {
                 ViewBag.Message = "Could not save the record.( " + ex.Message + ")";
             }
             return View();
+        }
+
+        public static List<string> GetModelStateErrors(ModelStateDictionary modelState)
+        {
+            var query = from state in modelState.Values
+                        from error in state.Errors
+                        select error.ErrorMessage;
+
+            var errorList = query.ToList();
+            return errorList;
         }
     }
 

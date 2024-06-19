@@ -12,6 +12,16 @@
       <End Role="UserStatu" EntitySet="UserStatus" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
+    <EntitySet Name="Appointments" EntityType="booking_dbModel.Appointment" />
+    <EntitySet Name="AppointmentStatus" EntityType="booking_dbModel.AppointmentStatu" />
+    <AssociationSet Name="FK__Appointme__Appoi__74AE54BC" Association="booking_dbModel.FK__Appointme__Appoi__74AE54BC">
+      <End Role="AppointmentStatu" EntitySet="AppointmentStatus" />
+      <End Role="Appointment" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Appointme__UserI__75A278F5" Association="booking_dbModel.FK__Appointme__UserI__75A278F5">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Appointment" EntitySet="Appointments" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="UserStatu">
     <Key>
@@ -62,8 +72,10 @@
     <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
     <Property Name="UserRoleId" Type="Int32" />
+    <Property Name="AppointmentId" Type="Int32" />
     <NavigationProperty Name="UserRole" Relationship="booking_dbModel.user_userrole" FromRole="User" ToRole="UserRole" />
     <NavigationProperty Name="UserStatu" Relationship="booking_dbModel.User_UserStatus" FromRole="User" ToRole="UserStatu" />
+    <NavigationProperty Name="Appointments" Relationship="booking_dbModel.FK__Appointme__UserI__75A278F5" FromRole="User" ToRole="Appointment" />
   </EntityType>
   <Association Name="user_userrole">
     <End Type="booking_dbModel.UserRole" Role="UserRole" Multiplicity="0..1" />
@@ -86,6 +98,59 @@
       </Principal>
       <Dependent Role="User">
         <PropertyRef Name="UserStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Appointment">
+    <Key>
+      <PropertyRef Name="AppointmentId" />
+    </Key>
+    <Property Name="AppointmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdminComment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserComment" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Lastmodified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AppointmentStatusId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="AppointmentStatu" Relationship="booking_dbModel.FK__Appointme__Appoi__74AE54BC" FromRole="Appointment" ToRole="AppointmentStatu" />
+    <NavigationProperty Name="User" Relationship="booking_dbModel.FK__Appointme__UserI__75A278F5" FromRole="Appointment" ToRole="User" />
+    <Property Name="DateandTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="AppointmentStatu">
+    <Key>
+      <PropertyRef Name="AppointmentStatusId" />
+    </Key>
+    <Property Name="AppointmentStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Appointments" Relationship="booking_dbModel.FK__Appointme__Appoi__74AE54BC" FromRole="AppointmentStatu" ToRole="Appointment" />
+  </EntityType>
+  <Association Name="FK__Appointme__Appoi__74AE54BC">
+    <End Type="booking_dbModel.AppointmentStatu" Role="AppointmentStatu" Multiplicity="0..1" />
+    <End Type="booking_dbModel.Appointment" Role="Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AppointmentStatu">
+        <PropertyRef Name="AppointmentStatusId" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="AppointmentStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Appointme__UserI__75A278F5">
+    <End Type="booking_dbModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="booking_dbModel.Appointment" Role="Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

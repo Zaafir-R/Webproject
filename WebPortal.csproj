@@ -136,6 +136,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Appointment.cs">
+      <DependentUpon>BookingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AppointmentStatu.cs">
+      <DependentUpon>BookingModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BookingModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -220,6 +226,9 @@
     <Content Include="Views\Shared\NoNav_Layout.cshtml" />
     <Content Include="Views\User\Signup.cshtml" />
     <Content Include="Views\Shared\Client_Layout.cshtml" />
+    <Content Include="Views\User\UserProfile.cshtml" />
+    <Content Include="Views\User\UserBookings.cshtml" />
+    <Content Include="Views\User\MakeBooking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

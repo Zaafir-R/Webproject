@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "User Bookings";
+    
+}
+<div>
+    <div class="row">
+        <div class="col-sm-12 text-center form-title">
+            <h1>Bookings</h1>
+        </div>
+
+    </div>
+    <div style="display: flex; justify-content:flex-end">
+        <a href="/user/makebooking" class="btn btn-primary btn-lg " role="button" aria-disabled="true">Book</a>
+
+    </div>
+    <br />
+    <table class="table table-bordered table-dark left">
+
+        <thead>
+            <tr>
+                <th>
+                    Date and Time
+                </th>
+                <th>
+                    User Comment
+                </th>
+                <th>
+                    Admin Comment
+                </th>
+                <th>
+                    Appointment Status
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>@item.DateTime</td>
+                        <td> @item.UserComment</td>
+                        <td>@item.AdminComment</td>
+                        <td>@item.AppointmentStatu.Name</td>
+
+                        <td><a href="/user/useredit?id=@item.UserId">Comment</a> | <a href="/user/bookingdelete?id=@item.UserId">Cancel</a></td>
+
+
+                    </tr>
+
+                }
+
+            }
+
+        </tbody>
+
+    </table>
+
+</div>

@@ -172,7 +172,6 @@ namespace WebPortal.Controllers
         public ActionResult Signup()
         {
             return View(new SignupViewModel());
-
         }
 
 
@@ -237,6 +236,54 @@ namespace WebPortal.Controllers
 
             var errorList = query.ToList();
             return errorList;
+        }
+
+        public ActionResult UserBookings()
+        {
+            User user = (WebPortal.Models.User)Session["Currentuser"];
+            var db = new booking_dbEntities();
+            var bookings = db.Appointments.Where(x => x.UserId == user.UserId).ToList();
+            return View(bookings);
+        }
+
+        [HttpGet]
+        public ActionResult MakeBooking()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult MakeBooking(Appointment booking)
+        {
+            User user = (WebPortal.Models.User)Session["Currentuser"];
+            var db = new booking_dbEntities();
+            booking = new Appointment();
+            try
+            {
+                if (ModelState.IsValid) 
+                {
+                    
+                    booking.UserId = user.UserId;
+                    booking.Lastmodified = DateTime.Now;
+                    booking.AppointmentStatusId = 2;
+                    booking.AppointmentStatu = db.AppointmentStatus.Where(a => a.AppointmentStatusId == booking.AppointmentStatusId).FirstOrDefault();
+                    booking.User = db.Users.Where(a => a.UserId == booking.UserId).FirstOrDefault();
+                    booking.DateandTime = DateTime.Now;
+                    db.Appointments.Add(booking);
+                    db.SaveChanges();
+                    ViewBag.Message = "User Saved";
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = "Could not save the record.( " + ex.Message + ")";
+            }
+            return View();
+        }
+        public ActionResult UserProfile()
+        {
+            return View();
         }
     }
 

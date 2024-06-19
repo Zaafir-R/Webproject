@@ -1,6 +1,6 @@
 ﻿@{
     var obj = (WebPortal.Models.User)Session["Currentuser"];
-    if (Session["Username"] == null)
+    if (Session["Currentuser"] == null)
     {
         Layout = " ~/Views/Shared/NoNav_Layout.cshtml";
     }

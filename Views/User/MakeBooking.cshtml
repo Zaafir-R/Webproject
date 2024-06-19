@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Make Booking";
+
+}
+
+
+<div class="centered-box">
+    <form action="/user/makebooking" method="post">
+        <div class="row">
+            <div class="col-sm-12 text-center form-title">
+                <h1>Make Bookings</h1>
+
+            </div>
+            @if (ViewBag.Message != null)
+            {
+                <div class="col-sm-12">
+                    <div class="alert alert-success" role="alert">
+                        @ViewBag.Message
+                    </div>
+                </div>
+            }
+
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <label style="font-size:larger" class="col-form-label" for="DateandTime"><b>Date and Time for Appointment:</b></label>
+                <input class="form-control full-input" type="datetime-local" id="DateandTime" name="DateandTime">
+            </div>
+            <div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <br />
+                    <button class="form-control btn-success full-input" type="submit">Book</button>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <br />
+                    <a href="/user/userbookings"></>Return to Bookings</a>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+

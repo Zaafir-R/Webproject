@@ -6,7 +6,14 @@
     <edmx:Diagrams>
       <Diagram DiagramId="f42ec5c568344ed69ce82b384aa59f9c" Name="Diagram1">
         <EntityTypeShape EntityType="booking_dbModel.UserStatu" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="booking_dbModel.UserRole" Width="1.5" PointX="2.875" PointY="5.25" />
+        <EntityTypeShape EntityType="booking_dbModel.UserRole" Width="1.5" PointX="5.25" PointY="3.125" />
+        <EntityTypeShape EntityType="booking_dbModel.User" Width="1.5" PointX="7.25" PointY="1.375" />
+        <AssociationConnector Association="booking_dbModel.user_userrole" />
+        <AssociationConnector Association="booking_dbModel.User_UserStatus" />
+        <EntityTypeShape EntityType="booking_dbModel.Appointment" Width="1.5" PointX="12.5" PointY="2.375" />
+        <EntityTypeShape EntityType="booking_dbModel.AppointmentStatu" Width="1.5" PointX="10.25" PointY="4.375" />
+        <AssociationConnector Association="booking_dbModel.FK__Appointme__Appoi__74AE54BC" />
+        <AssociationConnector Association="booking_dbModel.FK__Appointme__UserI__75A278F5" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

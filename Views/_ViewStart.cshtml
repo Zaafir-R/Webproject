@@ -1,3 +1,23 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    var obj = (WebPortal.Models.User)Session["Currentuser"];
+    if (Session["Username"] == null)
+    {
+        Layout = " ~/Views/Shared/NoNav_Layout.cshtml";
+    }
+    else
+    {
+        bool isAdmin = obj.UserRoleId == 1;
+
+        if (isAdmin)
+        {
+            Layout = " ~/Views/Shared/_Layout.cshtml";
+
+        }
+
+        else
+        {
+            Layout = " ~/Views/Shared/Client_Layout.cshtml";
+        }
+
+    }
 }

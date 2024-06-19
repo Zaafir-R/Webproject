@@ -30,7 +30,10 @@
                     Username
                 </th>
                 <th>
-                    UserStatusId
+                    UserStatus
+                </th>
+                <th>
+                    Role
                 </th>
                 <th>
                     Email
@@ -47,18 +50,19 @@
             @{
                 foreach (var item in Model)
                 {
-                    <tr>
+                        <tr>
 
-                        <td>@item.Firstname</td>
-                        <td> @item.Surname</td>
-                        <td>@item.Username</td>
-                        <td>@item.UserStatusId</td>
-                        <td>@item.Email</td>
-                        <td>@item.Phone</td>
-                        <td><a href="/user/useredit?id=@item.UserId">Edit</a> | <a href="/user/userdelete?id=@item.UserId">Delete</a></td>
+                            <td>@item.Firstname</td>
+                            <td> @item.Surname</td>
+                            <td>@item.Username</td>
+                            <td>@item.UserStatu.Name</td>
+                            <td>@item.UserRole.Name</td>
+                            <td>@item.Email</td>
+                            <td>@item.Phone</td>
+                            <td><a href="/user/useredit?id=@item.UserId">Edit</a> | <a href="/user/userdelete?id=@item.UserId">Delete</a></td>
 
 
-                    </tr>
+                        </tr>
 
                 }
 

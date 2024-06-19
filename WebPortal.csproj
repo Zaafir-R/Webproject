@@ -155,6 +155,9 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>BookingModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserRole.cs">
+      <DependentUpon>BookingModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserStatu.cs">
       <DependentUpon>BookingModel.tt</DependentUpon>
     </Compile>
@@ -216,6 +219,7 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Shared\NoNav_Layout.cshtml" />
     <Content Include="Views\User\Signup.cshtml" />
+    <Content Include="Views\Shared\Client_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

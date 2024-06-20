@@ -157,6 +157,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BookingModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\BookingModel1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BookingModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\IUserStatus.cs" />
     <Compile Include="Models\User.cs">
       <DependentUpon>BookingModel.tt</DependentUpon>
@@ -193,7 +198,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\BookingModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BookingModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>BookingModel1.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="Models\BookingModel.edmx.diagram">
       <DependentUpon>BookingModel.edmx</DependentUpon>

@@ -5,12 +5,13 @@
       <PropertyRef Name="AppointmentId" />
     </Key>
     <Property Name="AppointmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="[DateandTime]" Type="datetime" />
+    <Property Name="DateandTime" Type="datetime" Nullable="false" />
     <Property Name="AdminComment" Type="varchar" MaxLength="50" />
-    <Property Name="UserComment" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Lastmodified" Type="datetime" Nullable="false" />
-    <Property Name="AppointmentStatusId" Type="int" />
-    <Property Name="UserId" Type="int" />
+    <Property Name="UserComment" Type="varchar" MaxLength="50" />
+    <Property Name="LastModified" Type="datetime" Nullable="false" />
+    <Property Name="AppointmentStatusId" Type="int" Nullable="false" />
+    <Property Name="Service" Type="varchar" MaxLength="50" />
+    <Property Name="UserId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="AppointmentStatus">
     <Key>
@@ -75,8 +76,8 @@
     <Property Name="LastModifiedBy" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="IsDeleted" Type="bit" Nullable="false" />
   </EntityType>
-  <Association Name="FK__Appointme__Appoi__74AE54BC">
-    <End Role="AppointmentStatus" Type="Self.AppointmentStatus" Multiplicity="0..1" />
+  <Association Name="FK__Appointme__Appoi__02FC7413">
+    <End Role="AppointmentStatus" Type="Self.AppointmentStatus" Multiplicity="1" />
     <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AppointmentStatus">
@@ -87,8 +88,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Appointme__UserI__75A278F5">
-    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+  <Association Name="FK_User_Appointment">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
     <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
@@ -129,11 +130,11 @@
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserStatus" EntityType="Self.UserStatus" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Appointme__Appoi__74AE54BC" Association="Self.FK__Appointme__Appoi__74AE54BC">
+    <AssociationSet Name="FK__Appointme__Appoi__02FC7413" Association="Self.FK__Appointme__Appoi__02FC7413">
       <End Role="AppointmentStatus" EntitySet="AppointmentStatus" />
       <End Role="Appointments" EntitySet="Appointments" />
     </AssociationSet>
-    <AssociationSet Name="FK__Appointme__UserI__75A278F5" Association="Self.FK__Appointme__UserI__75A278F5">
+    <AssociationSet Name="FK_User_Appointment" Association="Self.FK_User_Appointment">
       <End Role="User" EntitySet="User" />
       <End Role="Appointments" EntitySet="Appointments" />
     </AssociationSet>

@@ -19,7 +19,10 @@
         <thead>
             <tr>
                 <th>
-                    Date and Time
+                    Meeting Time
+                </th>
+                <th>
+                    Service
                 </th>
                 <th>
                     User Comment
@@ -39,17 +42,17 @@
             @{
                 foreach (var item in Model)
                 {
-                    <tr>
+                        <tr>
 
-                        <td>@item.DateTime</td>
-                        <td> @item.UserComment</td>
-                        <td>@item.AdminComment</td>
-                        <td>@item.AppointmentStatu.Name</td>
+                            <td>@item.DateandTime</td>
+                            <td>@item.Service</td>
+                            <td> @item.UserComment</td>
+                            <td>@item.AdminComment</td>
+                            <td>@item.AppointmentStatu.Name</td>
 
-                        <td><a href="/user/useredit?id=@item.UserId">Comment</a> | <a href="/user/bookingdelete?id=@item.UserId">Cancel</a></td>
+                            <td><a href="/user/CancelBooking?id=@item.AppointmentId">Cancel</a></td>
 
-
-                    </tr>
+                        </tr>
 
                 }
 

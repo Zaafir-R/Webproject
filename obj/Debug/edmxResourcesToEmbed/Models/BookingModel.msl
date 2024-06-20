@@ -53,19 +53,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Appointments">
-      <EntityTypeMapping TypeName="booking_dbModel.Appointment">
-        <MappingFragment StoreEntitySet="Appointments">
-          <ScalarProperty Name="DateandTime" ColumnName="[DateandTime]" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="AppointmentStatusId" ColumnName="AppointmentStatusId" />
-          <ScalarProperty Name="Lastmodified" ColumnName="Lastmodified" />
-          <ScalarProperty Name="UserComment" ColumnName="UserComment" />
-          <ScalarProperty Name="AdminComment" ColumnName="AdminComment" />
-          <ScalarProperty Name="AppointmentId" ColumnName="AppointmentId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="AppointmentStatus">
       <EntityTypeMapping TypeName="booking_dbModel.AppointmentStatu">
         <MappingFragment StoreEntitySet="AppointmentStatus">
@@ -78,6 +65,20 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Code" ColumnName="Code" />
           <ScalarProperty Name="AppointmentStatusId" ColumnName="AppointmentStatusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Appointments">
+      <EntityTypeMapping TypeName="booking_dbModel.Appointment">
+        <MappingFragment StoreEntitySet="Appointments">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Service" ColumnName="Service" />
+          <ScalarProperty Name="AppointmentStatusId" ColumnName="AppointmentStatusId" />
+          <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+          <ScalarProperty Name="UserComment" ColumnName="UserComment" />
+          <ScalarProperty Name="AdminComment" ColumnName="AdminComment" />
+          <ScalarProperty Name="DateandTime" ColumnName="DateandTime" />
+          <ScalarProperty Name="AppointmentId" ColumnName="AppointmentId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

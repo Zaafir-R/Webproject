@@ -20,14 +20,21 @@
                 <li><a href="/user/userslist">Users</a></li>
                 <li><a href="/userstatus/userstatuslist">Userstatus</a></li>
             </ul>
+
+            
             @{
-                var obj=  (WebPortal.Models.User)Session["Currentuser"];
+                var obj = (WebPortal.Models.User)Session["Currentuser"];
                 if (obj.Username != null)
                 {
-                        <p class="navbar-text navbar-right">
-                            Hi @obj.Firstname @obj.Surname
-                            <a href="/user/logout">| Log out</a>
-                        </p>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li >
+                                <a>Hi @Session["Firstname"] @Session["Surname"]</a>
+                            </li>
+                            <li >
+                                <a href="/user/logout">Log out</a>
+                            </li>
+
+                        </ul>
 
                 }
 

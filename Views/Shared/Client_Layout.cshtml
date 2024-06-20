@@ -9,23 +9,27 @@
 </head>
 
 <body>
-
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/user/userbookings">Bookings</a>
-            </div>
+
             <ul class="nav navbar-nav">
-                
-                <li><a href="/user/userslist">Profile</a></li>
-                
+                <li><a class="" href="/user/userbookings">My Appointments</a></li>
+                <li><a class="" href="/user/userprofile?id=@Session["UserId"]">My Profile</a></li>
+
             </ul>
             @{ if (Session["Username"] != null)
                 {
-                        <p class="navbar-text navbar-right">
-                            Hi @Session["Firstname"] @Session["Surname"]
-                            <a href="/user/logout">| Log out</a>
-                        </p>
+   
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                           <a>Hi @Session["Firstname"] @Session["Surname"]</a>
+                        </li>
+                        <li class="">
+                            <a href="/user/logout">Log out</a>
+                        </li>
+
+                    </ul>
 
                 }
 
@@ -33,7 +37,7 @@
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container-fluid">
         @RenderBody()
     </div>
 

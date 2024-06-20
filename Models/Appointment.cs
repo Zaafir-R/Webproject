@@ -15,12 +15,13 @@ namespace WebPortal.Models
     public partial class Appointment
     {
         public int AppointmentId { get; set; }
+        public System.DateTime DateandTime { get; set; }
         public string AdminComment { get; set; }
         public string UserComment { get; set; }
-        public System.DateTime Lastmodified { get; set; }
-        public Nullable<int> AppointmentStatusId { get; set; }
-        public Nullable<int> UserId { get; set; }
-        public Nullable<System.DateTime> DateandTime { get; set; }
+        public System.DateTime LastModified { get; set; }
+        public int AppointmentStatusId { get; set; }
+        public string Service { get; set; }
+        public int UserId { get; set; }
     
         public virtual AppointmentStatu AppointmentStatu { get; set; }
         public virtual User User { get; set; }

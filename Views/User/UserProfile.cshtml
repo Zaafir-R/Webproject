@@ -4,47 +4,49 @@
 
 
 <div class="centered-box">
-    <form action="/user/userprofile" method="post">
+    <form action="/user/updateprofile" method="post">
         <div class="row">
             <div class="col-sm-12 text-center form-title">
                 <h1>Profile</h1>
-                <p></p>
+
             </div>
-            @if (ViewBag.Message != null)
-            {
-                <div class="col-sm-12">
-                    <div class="alert alert-success" role="alert">
-                        @ViewBag.Message
+            @{if (ViewBag.Message != null)
+                {
+                    <div class="col-sm-12">
+                        <div class="alert alert-success" role="alert">
+                            @ViewBag.Message
+                        </div>
                     </div>
-                </div>
+                }
             }
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <label style="font-size:larger" class="col-form-label" for="Firstname"><b>Firstname</b></label>
-                <input class="form-control full-input" type="text" placeholder="Enter Firstname" name="Firstname" id="Firstname" required>
+                <input class="form-control full-input" type="text" value="@ViewBag.User.Firstname" name="Firstname" id="Firstname" required>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <label style="font-size:larger" class="col-form-label" for="Surname"><b>Surname</b></label>
-                <input class="form-control full-input" type="text" placeholder="Enter Surname" name="Surname" id="Surname" required>
+                <input class="form-control full-input" type="text" value="@ViewBag.User.Surname" name="Surname" id="Surname" required>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <label style="font-size:larger" class="col-form-label" for="Email"><b>Email</b></label>
-                <input class="form-control full-input" type="text" placeholder="Enter Email" name="Email" id="Email" required>
+                <input class="form-control full-input" type="text" value="@ViewBag.User.Email" name="Email" id="Email" required>
             </div>
 
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <label style="font-size:larger" class="col-form-label" for="Phone"><b>Phone</b></label>
-                <input class="form-control full-input" type="text" placeholder="Enter Phone" name="Phone" id="Phone" required>
+                <input class="form-control full-input" type="text" value="@ViewBag.User.Phone" name="Phone" id="Phone" required>
             </div>
 
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <label style="font-size:larger" class="col-form-label" for="Password"><b>Password</b></label>
-                <input class="form-control full-input" type="text" placeholder="Enter Password" name="Password" id="Password" required>
+                <input class="form-control full-input" type="text" value="@ViewBag.User.Password" name="Password" id="Password" required>
             </div>
 
             <div class="col-sm-12 col-md-6 col-lg-6">
                 <br />
-                <button class="form-control btn-success full-input" type="submit">Register</button>
 
+                <button class="form-control btn btn-success" type="submit">Update</button>
+                <input type="hidden" value="@ViewBag.User.UserId" name="UserId" id="UserId">
             </div>
         </div>
     </form>

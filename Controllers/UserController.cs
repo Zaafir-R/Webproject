@@ -239,8 +239,17 @@ namespace WebPortal.Controllers
         {
             User user = (WebPortal.Models.User)Session["Currentuser"];
             var db = new booking_dbEntities();
-            var bookings = db.Appointments.Where(x => x.UserId == user.UserId && x.AppointmentStatusId!=3).ToList();
-            return View(bookings);
+            if (user.UserRole.Code == "ADM")
+            {
+                var bookings = db.Appointments.ToList();
+                return View(bookings);
+            }
+            else
+            {
+                var bookings = db.Appointments.Where(x => x.UserId == user.UserId && x.AppointmentStatusId != 3).ToList();
+                return View(bookings);
+            }
+                
         }
 
         [HttpGet]

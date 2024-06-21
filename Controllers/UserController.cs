@@ -284,6 +284,9 @@ namespace WebPortal.Controllers
                     updatedAppointment.AppointmentStatusId = booking.AppointmentStatusId;
                     ViewBag.message = "Booking updated";
                     ViewBag.booking = updatedAppointment;
+                    db.Appointments.AddOrUpdate(updatedAppointment);
+                    db.SaveChanges();
+                    ViewBag.Message = "Account created";
                     return RedirectToAction("AdminBookings");
                 }
             }

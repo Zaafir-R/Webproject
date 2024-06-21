@@ -76,7 +76,7 @@
     <Property Name="LastModifiedBy" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="IsDeleted" Type="bit" Nullable="false" />
   </EntityType>
-  <Association Name="FK__Appointme__Appoi__02FC7413">
+  <Association Name="FK__Appointme__Appoi__6477ECF3">
     <End Role="AppointmentStatus" Type="Self.AppointmentStatus" Multiplicity="1" />
     <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
     <ReferentialConstraint>
@@ -130,7 +130,7 @@
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserStatus" EntityType="Self.UserStatus" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Appointme__Appoi__02FC7413" Association="Self.FK__Appointme__Appoi__02FC7413">
+    <AssociationSet Name="FK__Appointme__Appoi__6477ECF3" Association="Self.FK__Appointme__Appoi__6477ECF3">
       <End Role="AppointmentStatus" EntitySet="AppointmentStatus" />
       <End Role="Appointments" EntitySet="Appointments" />
     </AssociationSet>

@@ -234,6 +234,8 @@
     <Content Include="Views\User\UserProfile.cshtml" />
     <Content Include="Views\User\UserBookings.cshtml" />
     <Content Include="Views\User\MakeBooking.cshtml" />
+    <Content Include="Views\User\AdminBookings.cshtml" />
+    <Content Include="Views\User\ReviewBooking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Review Booking";
+
+}
+
+
+<div class="centered-box">
+    <form action="/user/reviewbooking" method="post">
+        <div class="row">
+            <div class="col-sm-12 text-center form-title">
+                <h1>Review Bookings</h1>
+
+            </div>
+            @if (ViewBag.Message != null)
+            {
+                <div class="col-sm-12">
+                    <div class="alert alert-success" role="alert">
+                        @ViewBag.Message
+                    </div>
+                </div>
+            }
+
+          
+
+        <div class="col-sm-12 col-md-6 col-lg-6">
+            <br />
+            <label for="AppointmentStatusId">Appointment Status</label>
+
+            <select class="form-control full-input" name="AppointmentStatusId" id="AppointmentStatusId">
+                @{
+                    foreach (var item in ViewBag.bookingstatus)
+                    {
+                        if (item.AppointmentStatusId == ViewBag.booking.AppointmentStatusId)
+                        {
+                              <option selected value="@item.AppointmentStatusId">@item.Name</option>
+                        }
+                        else
+                        {
+                            <option value = "@item.AppointmentStatusId" > @item.Name </option>
+                        }
+                    }
+                }
+            </select>
+
+        </div>
+
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="AdminComment"><b>Admin Comment</b></label>
+                    <textarea class="form-control full-input" type="text" placeholder="Enter Appointment Feedback" name="AdminComment" id="AdmineComment" required></textarea>
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="UserComment"><b>User Comment</b></label>
+                    <input disabled class="form-control full-input" type="text" value="@ViewBag.booking.UserComment" name="UserComment" id="UserComment" required>
+                </div>
+            </div>
+
+            <div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <br />
+                    <button class="form-control btn-success full-input" type="submit">Update Appointment</button>
+                    <input  class="form-control full-input" type="hidden" value="@ViewBag.booking.AppointmentId" name="AppointmentId" id="AppointmentId">
+
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <br />
+                    <a href="/user/adminbookings"></>Return to Bookings</a>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+

@@ -204,7 +204,7 @@ namespace WebPortal.Controllers
                     {
                         db.Users.Add(user);
                         db.SaveChanges();
-                        ViewBag.Message = "User Saved";
+                        ViewBag.Message = "Account created";
                     }
                     else
                     {
@@ -239,23 +239,64 @@ namespace WebPortal.Controllers
         {
             User user = (WebPortal.Models.User)Session["Currentuser"];
             var db = new booking_dbEntities();
-            if (user.UserRole.Code == "ADM")
-            {
-                var bookings = db.Appointments.ToList();
-                return View(bookings);
-            }
-            else
-            {
-                var bookings = db.Appointments.Where(x => x.UserId == user.UserId && x.AppointmentStatusId != 3).ToList();
-                return View(bookings);
-            }
+
+            var bookings = db.Appointments.Where(x => x.UserId == user.UserId && x.AppointmentStatusId != 3).ToList();
+            return View(bookings);
+          
                 
+        }
+
+        public ActionResult AdminBookings() 
+        {
+            
+            var db = new booking_dbEntities();
+
+            var bookings = db.Appointments.ToList();
+            return View(bookings);
+        }
+
+
+        [HttpGet]
+        public ActionResult ReviewBooking(int id)
+        {
+            Appointment booking = db.Appointments.Find(keyValues: id);
+            var appointmentstatus = db.AppointmentStatus.ToList();
+            ViewBag.bookingstatus = appointmentstatus;
+            ViewBag.booking  = booking;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ReviewBooking(Appointment booking)
+        {
+            User user = (WebPortal.Models.User)Session["Currentuser"];
+            var db = new booking_dbEntities();
+            var appointmentstatus = db.AppointmentStatus.ToList();
+            ViewBag.bookingstatus = appointmentstatus;
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var updatedAppointment = db.Appointments.Where(x => x.AppointmentId == booking.AppointmentId).FirstOrDefault();
+
+                    updatedAppointment.AdminComment = booking.AdminComment;
+                    updatedAppointment.UserComment = booking.UserComment;
+                    updatedAppointment.AppointmentStatusId = booking.AppointmentStatusId;
+                    ViewBag.message = "Booking updated";
+                    ViewBag.booking = updatedAppointment;
+                    return RedirectToAction("AdminBookings");
+                }
+            }
+            catch (Exception ex) { }
+            return View();
         }
 
         [HttpGet]
         public ActionResult MakeBooking()
         {
-            return View();
+         
+          return View();
+            
         }
 
         [HttpPost]
@@ -271,7 +312,7 @@ namespace WebPortal.Controllers
                     
                     booking.UserId = user.UserId;
                     booking.LastModified = DateTime.Now;
-                    booking.AppointmentStatusId = 2;
+                    booking.AppointmentStatusId = db.AppointmentStatus.Where(x => x.Code == "PND").FirstOrDefault().AppointmentStatusId;
                     booking.AppointmentStatu = db.AppointmentStatus.Where(a => a.AppointmentStatusId == booking.AppointmentStatusId).FirstOrDefault();
                     booking.User = db.Users.Where(a => a.UserId == booking.UserId).FirstOrDefault();
 

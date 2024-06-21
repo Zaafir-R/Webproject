@@ -14,7 +14,7 @@
     </AssociationSet>
     <EntitySet Name="AppointmentStatus" EntityType="booking_dbModel.AppointmentStatu" />
     <EntitySet Name="Appointments" EntityType="booking_dbModel.Appointment" />
-    <AssociationSet Name="FK__Appointme__Appoi__02FC7413" Association="booking_dbModel.FK__Appointme__Appoi__02FC7413">
+    <AssociationSet Name="FK__Appointme__Appoi__5EBF139D" Association="booking_dbModel.FK__Appointme__Appoi__5EBF139D">
       <End Role="AppointmentStatu" EntitySet="AppointmentStatus" />
       <End Role="Appointment" EntitySet="Appointments" />
     </AssociationSet>
@@ -114,7 +114,7 @@
     <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="Appointments" Relationship="booking_dbModel.FK__Appointme__Appoi__02FC7413" FromRole="AppointmentStatu" ToRole="Appointment" />
+    <NavigationProperty Name="Appointments" Relationship="booking_dbModel.FK__Appointme__Appoi__5EBF139D" FromRole="AppointmentStatu" ToRole="Appointment" />
   </EntityType>
   <EntityType Name="Appointment">
     <Key>
@@ -128,10 +128,10 @@
     <Property Name="AppointmentStatusId" Type="Int32" Nullable="false" />
     <Property Name="Service" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="UserId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="AppointmentStatu" Relationship="booking_dbModel.FK__Appointme__Appoi__02FC7413" FromRole="Appointment" ToRole="AppointmentStatu" />
+    <NavigationProperty Name="AppointmentStatu" Relationship="booking_dbModel.FK__Appointme__Appoi__5EBF139D" FromRole="Appointment" ToRole="AppointmentStatu" />
     <NavigationProperty Name="User" Relationship="booking_dbModel.FK_User_Appointment" FromRole="Appointment" ToRole="User" />
   </EntityType>
-  <Association Name="FK__Appointme__Appoi__02FC7413">
+  <Association Name="FK__Appointme__Appoi__5EBF139D">
     <End Type="booking_dbModel.AppointmentStatu" Role="AppointmentStatu" Multiplicity="1" />
     <End Type="booking_dbModel.Appointment" Role="Appointment" Multiplicity="*" />
     <ReferentialConstraint>

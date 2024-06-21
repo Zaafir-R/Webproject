@@ -4,13 +4,13 @@
 
 
 <div class="centered-box">
-    <form action="/user/updateprofile" method="post">
+    <form action="/user/userprofile" method="post">
         <div class="row">
             <div class="col-sm-12 text-center form-title">
                 <h1>Profile</h1>
 
             </div>
-            @{if (ViewBag.Message != null)
+            @{if (ViewBag.Message != "")
                 {
                     <div class="col-sm-12">
                         <div class="alert alert-success" role="alert">

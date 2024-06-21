@@ -239,7 +239,7 @@ namespace WebPortal.Controllers
         {
             User user = (WebPortal.Models.User)Session["Currentuser"];
             var db = new booking_dbEntities();
-            var bookings = db.Appointments.Where(x => x.UserId == user.UserId).ToList();
+            var bookings = db.Appointments.Where(x => x.UserId == user.UserId && x.AppointmentStatusId!=3).ToList();
             return View(bookings);
         }
 
@@ -286,7 +286,7 @@ namespace WebPortal.Controllers
         public ActionResult CancelBooking(int id)
         {
             Appointment booking = db.Appointments.Find(keyValues: id);
-            db.Appointments.Remove(booking);
+            booking.AppointmentStatusId = 3;
             db.SaveChanges();
             return RedirectToAction("UserBookings");
         }
@@ -298,33 +298,43 @@ namespace WebPortal.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult UpdateProfile(User user) 
+        public ActionResult UserProfile(User user) 
         {
-            var updatedUser = db.Users.Where(x => x.UserId == user.UserId).FirstOrDefault();
-
-            if (ModelState.IsValid)
+            try
             {
-                
-                updatedUser.Username = user.Email;
-                updatedUser.Firstname = user.Firstname;
-                updatedUser.Surname = user.Surname;
-                updatedUser.Email = user.Email;
-                updatedUser.UserStatusId = 2;
-                updatedUser.CreatedBy = "Webservice";
-                updatedUser.LastModifiedBy = "Webservice";
-                updatedUser.CreatedDate = DateTime.Now;
-                updatedUser.LastModifiedDate = DateTime.Now;
-                //updatedUser.UserRole = db.UserRoles.Where(x => x.Code == "CLT").FirstOrDefault();
-                //updatedUser.UserRoleId = user.UserRole.UserRoleId;
+                var updatedUser = db.Users.Where(x => x.UserId == user.UserId).FirstOrDefault();
 
-                Session["Currentuser"] =updatedUser;
-                ViewBag.Message = "Profile Updated";
-                db.Users.AddOrUpdate(updatedUser);
-                db.SaveChanges();
-                return RedirectToAction("UserProfile");
+                if (ModelState.IsValid)
+                {
 
+                    updatedUser.Username = user.Email;
+                    updatedUser.Firstname = user.Firstname;
+                    updatedUser.Surname = user.Surname;
+                    updatedUser.Email = user.Email;
+                    updatedUser.UserStatusId = 2;
+                    updatedUser.CreatedBy = "Webservice";
+                    updatedUser.LastModifiedBy = "Webservice";
+                    updatedUser.CreatedDate = DateTime.Now;
+                    updatedUser.LastModifiedDate = DateTime.Now;
+                    //updatedUser.UserRole = db.UserRoles.Where(x => x.Code == "CLT").FirstOrDefault();
+                    //updatedUser.UserRoleId = user.UserRole.UserRoleId;
+
+                    Session["Currentuser"] = updatedUser;
+                    ViewBag.Message = "Profile Updated";
+                    ViewBag.User = updatedUser;
+                    db.Users.AddOrUpdate(updatedUser);
+                    db.SaveChanges();
+
+                    return View();
+
+                }
+                ViewBag.Message = "Profile Not Updated";
             }
-            return View(updatedUser);
+            catch (Exception ex)
+            {
+                ViewBag.Message = "Could not save the record.( " + ex.Message + ")";
+            }
+            return View();
         }
     }
 

@@ -129,6 +129,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Common\Helper.cs" />
     <Compile Include="Controllers\UserStatusController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ContactController.cs" />

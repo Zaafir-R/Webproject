@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Net.Mail;
 using System.Web.Mvc;
 using WebPortal.Models;
+using WebPortal.Common;
 
 
 namespace WebPortal.Controllers
@@ -286,11 +288,15 @@ namespace WebPortal.Controllers
                     ViewBag.booking = updatedAppointment;
                     db.Appointments.AddOrUpdate(updatedAppointment);
                     db.SaveChanges();
-                    ViewBag.Message = "Account created";
+
+
+                    Helper.SendEmail("Appointment Status:" + updatedAppointment.AppointmentStatu.Name, "Your apppintment at " + updatedAppointment.DateandTime + " has been " + updatedAppointment.AppointmentStatu.Name + "<br/>" + updatedAppointment.AdminComment, updatedAppointment.User.Email);
+                   
+                   
                     return RedirectToAction("AdminBookings");
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { ViewBag.Message = "Could not save the record.( " + ex.Message + ")"; }
             return View();
         }
 

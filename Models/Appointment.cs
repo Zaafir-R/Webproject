@@ -20,10 +20,11 @@ namespace WebPortal.Models
         public string UserComment { get; set; }
         public System.DateTime LastModified { get; set; }
         public int AppointmentStatusId { get; set; }
-        public string Service { get; set; }
         public int UserId { get; set; }
+        public Nullable<int> ServiceId { get; set; }
     
         public virtual AppointmentStatu AppointmentStatu { get; set; }
+        public virtual Service Service { get; set; }
         public virtual User User { get; set; }
     }
 }

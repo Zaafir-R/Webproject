@@ -17,13 +17,16 @@
                 <li><a class="" href="/user/userprofile?id=@Session["UserId"]">My Profile</a></li>
 
             </ul>
-            @{ if (Session["Username"] != null)
+
+            @{
+                var obj = (WebPortal.Models.User)Session["Currentuser"];
+                if (obj.Username != null)
                 {
-   
+
 
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
-                           <a>Hi @Session["Firstname"] @Session["Surname"]</a>
+                            <a>Hi @Session["Firstname"] @Session["Surname"]</a>
                         </li>
                         <li class="">
                             <a href="/user/logout">Log out</a>
@@ -31,11 +34,16 @@
 
                     </ul>
 
+
+
                 }
 
             }
         </div>
     </nav>
+
+
+
 
     <div class="container-fluid">
         @RenderBody()
@@ -44,5 +52,9 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+   
 </body>
+
+    
+
 </html>

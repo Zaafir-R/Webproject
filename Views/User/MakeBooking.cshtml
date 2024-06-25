@@ -26,19 +26,21 @@
                        id="DateandTime"
                        name="DateandTime"
                        min="@DateTime.Now"
-                       step="3600" required/>   
+                       step="3600" required />
             </div>
 
             <div class="col-sm-12 col-md-6 col-lg-6">
                 <br />
-                <label for="Service">Service</label>
+                <label for="Service">ServiceId</label>
 
-                <select class="form-control full-input" name="Service" id="Service">
-                    <option value="Dentist">Dentist</option>
-                    <option value="Docter">Docter</option>
-                    <option value="Therapy">Therapy</option>
-                    <option value="Legal Consultation">Legal Consultation</option>
-                    <option value="Job Interview">Job Interview</option>
+                <select class="form-control full-input" name="ServiceId" id="ServiceId">
+                    @{
+                        foreach (var item in ViewBag.services)
+                        {
+                            <option value="@item.ServiceId"> @item.Name </option>
+                        }
+                    }
+
                 </select>
 
             </div>

@@ -27,8 +27,9 @@ namespace WebPortal.Models
     
         public virtual DbSet<UserStatu> UserStatus { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
-        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<AppointmentStatu> AppointmentStatus { get; set; }
         public virtual DbSet<Appointment> Appointments { get; set; }
+        public virtual DbSet<Service> Services { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

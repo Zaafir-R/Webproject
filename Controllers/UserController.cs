@@ -114,8 +114,9 @@ namespace WebPortal.Controllers
         [HttpGet]
         public ActionResult Userdelete(int id)
         {
-            User User = db.Users.Find(keyValues: id);
-            db.Users.Remove(User);
+            User user = db.Users.Where(x=>x.UserId==id).FirstOrDefault();
+            db.Appointments.RemoveRange(user.Appointments);
+            db.Users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("UsersList");
 
@@ -124,6 +125,7 @@ namespace WebPortal.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            
             return View();
         }
 
@@ -135,11 +137,13 @@ namespace WebPortal.Controllers
 
 
             var obj = db.Users.FirstOrDefault(a => a.Username.Equals(user.Username) && a.Password.Equals(user.Password));
+            ViewBag.User = obj;
             if (obj != null)
             {
 
                 Session["Currentuser"] = obj;
                 Session["UserId"] = obj.UserId.ToString();
+                Session["Status"] = obj.UserStatu.Code.ToString();
                 Session["Username"] = obj.Username.ToString();
                 Session["Firstname"] = obj.Firstname.ToString();
                 Session["Surname"] = obj.Surname.ToString();
@@ -204,9 +208,12 @@ namespace WebPortal.Controllers
                    var obj = db.Users.Where(a => a.Email.Equals(user.Email));
                     if (!obj.Any())
                     {
+                        
                         db.Users.Add(user);
                         db.SaveChanges();
-                        ViewBag.Message = "Account created";
+                       
+                        Helper.SendEmail(user.Email + " Verification", "Click on the link to verify and then go to log in page <br/>http://zaafir.work.za.bz:8085/User/verifyaccount?Id=" + user.UserId, user.Email);
+                        ViewBag.Message = "Account created and Verification Email has been Sent";
                     }
                     else
                     {
@@ -303,8 +310,9 @@ namespace WebPortal.Controllers
         [HttpGet]
         public ActionResult MakeBooking()
         {
-         
-          return View();
+            var services = db.Services.ToList();
+            ViewBag.services = services;
+            return View();
             
         }
 
@@ -313,7 +321,9 @@ namespace WebPortal.Controllers
         {
             User user = (WebPortal.Models.User)Session["Currentuser"];
             var db = new booking_dbEntities();
-            
+            var services = db.Services.ToList();
+            ViewBag.services = services;
+
             try
             {
                 if (ModelState.IsValid) 
@@ -345,7 +355,8 @@ namespace WebPortal.Controllers
         public ActionResult CancelBooking(int id)
         {
             Appointment booking = db.Appointments.Find(keyValues: id);
-            booking.AppointmentStatusId = 3;
+            booking.AppointmentStatu = db.AppointmentStatus.Where((x) => x.Code=="CAN").FirstOrDefault();
+            booking.AppointmentStatusId = booking.AppointmentStatu.AppointmentStatusId;
             db.SaveChanges();
             return RedirectToAction("UserBookings");
         }
@@ -370,7 +381,8 @@ namespace WebPortal.Controllers
                     updatedUser.Firstname = user.Firstname;
                     updatedUser.Surname = user.Surname;
                     updatedUser.Email = user.Email;
-                    updatedUser.UserStatusId = 2;
+                    updatedUser.UserStatu = db.UserStatus.Where(x=>x.Code == "ACT").FirstOrDefault();
+                    updatedUser.UserStatusId = updatedUser.UserStatu.UserStatusId;
                     updatedUser.CreatedBy = "Webservice";
                     updatedUser.LastModifiedBy = "Webservice";
                     updatedUser.CreatedDate = DateTime.Now;
@@ -394,6 +406,22 @@ namespace WebPortal.Controllers
                 ViewBag.Message = "Could not save the record.( " + ex.Message + ")";
             }
             return View();
+        }
+
+        public ActionResult RecieveVerification() 
+        {
+            var obj = (WebPortal.Models.User)Session["Currentuser"];
+            Helper.SendEmail(obj.Email + " Verification", "Click on the link to verify and then go to log in page <br/>http://zaafir.work.za.bz:8085/User/verifyaccount?Id=" + obj.UserId, obj.Email);
+            return RedirectToAction("Index", "Home");
+
+        }
+        public ActionResult VerifyAccount(int Id)
+        {
+
+            User user = db.Users.Where(x => x.UserId == Id).FirstOrDefault();
+            user.UserStatu = db.UserStatus.Where(x => x.Code == "ACT").FirstOrDefault();
+            user.UserStatusId = user.UserStatu.UserStatusId;
+            return RedirectToAction("Login");
         }
     }
 

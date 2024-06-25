@@ -74,3 +74,18 @@ body {
  width:400px;
  
 }
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.flex-content {
+    flex: 1;
+}
+
+.down-right {
+    align-self: flex-end;
+    margin-top: auto;
+    
+}

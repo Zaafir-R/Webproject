@@ -164,6 +164,9 @@
       <DependentUpon>BookingModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\IUserStatus.cs" />
+    <Compile Include="Models\Service.cs">
+      <DependentUpon>BookingModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>BookingModel.tt</DependentUpon>
     </Compile>

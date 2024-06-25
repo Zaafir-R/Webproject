@@ -10,14 +10,28 @@
     <Property Name="UserComment" Type="varchar" MaxLength="50" />
     <Property Name="LastModified" Type="datetime" Nullable="false" />
     <Property Name="AppointmentStatusId" Type="int" Nullable="false" />
-    <Property Name="Service" Type="varchar" MaxLength="50" />
     <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="ServiceId" Type="int" />
   </EntityType>
   <EntityType Name="AppointmentStatus">
     <Key>
       <PropertyRef Name="AppointmentStatusId" />
     </Key>
     <Property Name="AppointmentStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="LastModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastModifiedBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Services">
+    <Key>
+      <PropertyRef Name="ServiceId" />
+    </Key>
+    <Property Name="ServiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Description" Type="varchar" MaxLength="50" />
@@ -46,7 +60,6 @@
     <Property Name="LastModifiedBy" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="IsDeleted" Type="bit" Nullable="false" />
     <Property Name="UserRoleId" Type="int" />
-    <Property Name="AppointmentId" Type="int" />
   </EntityType>
   <EntityType Name="UserRole">
     <Key>
@@ -85,6 +98,18 @@
       </Principal>
       <Dependent Role="Appointments">
         <PropertyRef Name="AppointmentStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Appointme__Servi__72C60C4A">
+    <End Role="Services" Type="Self.Services" Multiplicity="0..1" />
+    <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Services">
+        <PropertyRef Name="ServiceId" />
+      </Principal>
+      <Dependent Role="Appointments">
+        <PropertyRef Name="ServiceId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -127,11 +152,16 @@
   <EntityContainer Name="booking_dbModelStoreContainer">
     <EntitySet Name="Appointments" EntityType="Self.Appointments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AppointmentStatus" EntityType="Self.AppointmentStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserStatus" EntityType="Self.UserStatus" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__Appointme__Appoi__6477ECF3" Association="Self.FK__Appointme__Appoi__6477ECF3">
       <End Role="AppointmentStatus" EntitySet="AppointmentStatus" />
+      <End Role="Appointments" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Appointme__Servi__72C60C4A" Association="Self.FK__Appointme__Servi__72C60C4A">
+      <End Role="Services" EntitySet="Services" />
       <End Role="Appointments" EntitySet="Appointments" />
     </AssociationSet>
     <AssociationSet Name="FK_User_Appointment" Association="Self.FK_User_Appointment">

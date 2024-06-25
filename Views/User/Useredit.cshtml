@@ -8,14 +8,14 @@
                 <h1>Update/Save User status</h1>
                 <p></p>
             </div>
-            //if (ViewBag.Message != null)
-    {
-        <div class="col-sm-12">
-            <div class="alert alert-success" role="alert">
-                @ViewBag.Message
-            </div>
-        </div>
-    }
+            @if (ViewBag.Message != null)
+            {
+                <div class="col-sm-12">
+                    <div class="alert alert-success" role="alert">
+                        @ViewBag.Message
+                    </div>
+                </div>
+            }
             <div class="col-sm-12 col-md-6 col-lg-6">
                 <div class="form-group">
                     <label for="Firstname"><b>Firstname</b></label>
@@ -52,8 +52,8 @@
                             {
                                 <option selected value="@item.UserStatusId">@item.Name</option>
                             }
-                            else 
-                            { 
+                            else
+                            {
                                 <option value="@item.UserStatusId">@item.Name</option>
                             }
                         }
@@ -65,7 +65,7 @@
             <div class="col-sm-12 col-md-6 col-lg-6">
                 <div class="form-group">
                     <label for="Password"><b>Password</b></label>
-                    <input class="form-control full-input" Value ="@ViewBag.User.Password"type="text" placeholder="Enter Password" name="Password" id="Password" required>
+                    <input class="form-control full-input" Value="@ViewBag.User.Password" type="text" placeholder="Enter Password" name="Password" id="Password" required>
                 </div>
             </div>
 

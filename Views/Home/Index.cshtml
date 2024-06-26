@@ -9,18 +9,4 @@
         <a href="/contact/aboutus">learn about us</a>
     </div>
 
-    @{var obj = (WebPortal.Models.User)Session["Currentuser"];
-
-        if (obj.UserStatu.Code.ToString() == "IACT")
-        {
-            <div class="down-right">
-
-                <p><b>Your account is Unverified <a href="/user/recieveverification">Click Here</a> to recieve verification Email</b></p>
-
-            </div>
-        }
-    }
-
-
-
 </div>

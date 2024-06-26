@@ -96,7 +96,7 @@ namespace WebPortal.Controllers
                 updatedUser.Firstname = user.Firstname;
                 updatedUser.Surname = user.Surname;
                 updatedUser.Email = user.Email;
-                updatedUser.UserStatusId = 2;
+                updatedUser.UserStatusId = user.UserStatusId;
                 updatedUser.CreatedBy = "Webservice";
                 updatedUser.LastModifiedBy = "Webservice";
                 updatedUser.CreatedDate = DateTime.Now;
@@ -125,7 +125,7 @@ namespace WebPortal.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            
+            ViewBag.Verification = false;
             return View();
         }
 
@@ -134,20 +134,25 @@ namespace WebPortal.Controllers
         public ActionResult Login(User user)
         {
             booking_dbEntities db = new booking_dbEntities();
-
+            ViewBag.Verification = false;
 
             var obj = db.Users.FirstOrDefault(a => a.Username.Equals(user.Username) && a.Password.Equals(user.Password));
             ViewBag.User = obj;
             if (obj != null)
             {
-
                 Session["Currentuser"] = obj;
                 Session["UserId"] = obj.UserId.ToString();
                 Session["Status"] = obj.UserStatu.Code.ToString();
                 Session["Username"] = obj.Username.ToString();
                 Session["Firstname"] = obj.Firstname.ToString();
                 Session["Surname"] = obj.Surname.ToString();
+
+                if (obj.UserStatu.Code.ToString() == "IACT")
                 
+                    ViewBag.Verification = true;
+                    ViewBag.message = "Email Not Verified";
+                    return View();
+                }
                 
                 return RedirectToAction("Index", "Home");
             }
@@ -390,9 +395,7 @@ namespace WebPortal.Controllers
                     updatedUser.LastModifiedBy = "Webservice";
                     updatedUser.CreatedDate = DateTime.Now;
                     updatedUser.LastModifiedDate = DateTime.Now;
-                    //updatedUser.UserRole = db.UserRoles.Where(x => x.Code == "CLT").FirstOrDefault();
-                    //updatedUser.UserRoleId = user.UserRole.UserRoleId;
-
+                    
                     Session["Currentuser"] = updatedUser;
                     ViewBag.Message = "Profile Updated";
                     ViewBag.User = updatedUser;

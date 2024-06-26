@@ -47,16 +47,16 @@
 
         </div>
 
-        @if (ViewBag.User!=null && ViewBag.User.UserStatu.Code == "IACT") 
-        {
-
+        @{if (ViewBag.Verification)
+            {
         <div class="col-lg-6 col-md-6 col-sm-6">
             <br />
-            <a href="/user/VerifyAccount?Id=@ViewBag.User.userId">Your account isn't Verified</a>
+            <b><a href="/user/recieveverification">Send Verification Email</a> </b>
 
         </div>
+                }
 
-        }
+            }
 
     </form>
     </div>

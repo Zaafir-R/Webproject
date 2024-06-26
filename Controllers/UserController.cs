@@ -148,7 +148,7 @@ namespace WebPortal.Controllers
                 Session["Surname"] = obj.Surname.ToString();
 
                 if (obj.UserStatu.Code.ToString() == "IACT")
-                
+                { 
                     ViewBag.Verification = true;
                     ViewBag.message = "Email Not Verified";
                     return View();

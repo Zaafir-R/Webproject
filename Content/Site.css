@@ -85,7 +85,8 @@ body {
 }
 
 .down-right {
-    align-self: flex-end;
-    margin-top: auto;
+    position:absolute;
+    bottom:0;
+    right:0;
     
 }

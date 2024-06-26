@@ -211,7 +211,10 @@ namespace WebPortal.Controllers
                         
                         db.Users.Add(user);
                         db.SaveChanges();
-                       
+
+
+                        
+                        //Helper.SendEmail(user.Email + " Verification", "Click on the link to verify and then go to log in page <br/>https://localhost:44321/user/verifyaccount?Id=" + user.UserId, user.Email);
                         Helper.SendEmail(user.Email + " Verification", "Click on the link to verify and then go to log in page <br/>http://zaafir.work.za.bz:8085/User/verifyaccount?Id=" + user.UserId, user.Email);
                         ViewBag.Message = "Account created and Verification Email has been Sent";
                     }
@@ -411,16 +414,20 @@ namespace WebPortal.Controllers
         public ActionResult RecieveVerification() 
         {
             var obj = (WebPortal.Models.User)Session["Currentuser"];
-            Helper.SendEmail(obj.Email + " Verification", "Click on the link to verify and then go to log in page <br/>http://zaafir.work.za.bz:8085/User/verifyaccount?Id=" + obj.UserId, obj.Email);
+            Helper.SendEmail(obj.Email + " Verification", "Click on the link to verify and then go to log in page <br/>http://zaafir.work.za.bz:8085/User/verifyaccount?Id="+ obj.UserId, obj.Email);
+            //Helper.SendEmail(obj.Email + " Verification", "Click on the link to verify and then go to log in page <br/>https://localhost:44321/user/verifyaccount?Id="+ obj.UserId, obj.Email);
             return RedirectToAction("Index", "Home");
 
         }
+        
         public ActionResult VerifyAccount(int Id)
         {
 
             User user = db.Users.Where(x => x.UserId == Id).FirstOrDefault();
             user.UserStatu = db.UserStatus.Where(x => x.Code == "ACT").FirstOrDefault();
             user.UserStatusId = user.UserStatu.UserStatusId;
+            db.Users.AddOrUpdate(user);
+            db.SaveChanges();
             return RedirectToAction("Login");
         }
     }

@@ -3,19 +3,24 @@
 }
 
 
-<div>
+<div class="row">
     <div class="col-sm-12 text-center">
         <h2>Welcome to my site</h2>
         <a href="/contact/aboutus">learn about us</a>
     </div>
-</div>
-@{var obj = (WebPortal.Models.User)Session["Currentuser"];
-    if (obj.UserStatu.Code.ToString() == "IACT")
-    {
-        <div class="col-sm-12 flex-container flex-content down-right">
 
-            <p>Your account is Unverified<a href="">Click Here</a> to recieve verification Email</p>
+    @{var obj = (WebPortal.Models.User)Session["Currentuser"];
 
-        </div>
+        if (obj.UserStatu.Code.ToString() == "IACT")
+        {
+            <div class="down-right">
+
+                <p><b>Your account is Unverified <a href="/user/recieveverification">Click Here</a> to recieve verification Email</b></p>
+
+            </div>
+        }
     }
-}
+
+
+
+</div>

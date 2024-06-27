@@ -157,8 +157,15 @@ namespace WebPortal.Controllers
                     ViewBag.message = obj.Email+ " Not Verified";
                     return View();
                 }
-                
-                return RedirectToAction("Index", "Home");
+                if (obj.UserRole.Code == "ADM") 
+                {
+
+                    return RedirectToAction("AdminIndex", "Home");
+                } else 
+                { 
+                    return RedirectToAction("Index", "Home"); 
+                }
+               
             }
             else
             {
@@ -261,7 +268,7 @@ namespace WebPortal.Controllers
             User user = (WebPortal.Models.User)Session["Currentuser"];
             var db = new booking_dbEntities();
 
-            var bookings = db.Appointments.Where(x => x.UserId == user.UserId && x.AppointmentStatusId != 3).ToList();
+            var bookings = db.Appointments.Where(x => x.UserId == user.UserId && x.AppointmentStatusId != 3 && x.isDeleted==false).ToList();
             return View(bookings);
           
                 
@@ -272,7 +279,7 @@ namespace WebPortal.Controllers
             
             var db = new booking_dbEntities();
 
-            var bookings = db.Appointments.ToList();
+            var bookings = db.Appointments.Where(x=>x.isDeleted==false).ToList();
             return View(bookings);
         }
 
@@ -318,7 +325,15 @@ namespace WebPortal.Controllers
             catch (Exception ex) { ViewBag.Message = "Could not save the record.( " + ex.Message + ")"; }
             return View();
         }
+        public ActionResult Appointmentdelete(int id)
+        {
+            Appointment booking = db.Appointments.Where(x =>x.AppointmentId == id).FirstOrDefault();
+            booking.isDeleted = true;
+            db.Appointments.AddOrUpdate(booking);
+            db.SaveChanges();
+            return RedirectToAction("AdminBookings ");
 
+        }
         [HttpGet]
         public ActionResult MakeBooking()
         {

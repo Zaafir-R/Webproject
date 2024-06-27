@@ -167,6 +167,9 @@
     <Compile Include="Models\Service.cs">
       <DependentUpon>BookingModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>BookingModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>BookingModel.tt</DependentUpon>
     </Compile>
@@ -241,6 +244,7 @@
     <Content Include="Views\User\MakeBooking.cshtml" />
     <Content Include="Views\User\AdminBookings.cshtml" />
     <Content Include="Views\User\ReviewBooking.cshtml" />
+    <Content Include="Views\Home\AdminIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -38,7 +38,7 @@ namespace WebPortal.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Appointment> Appointments { get; set; }
-        public virtual UserRole UserRole { get; set; }
         public virtual UserStatu UserStatu { get; set; }
+        public virtual UserRole UserRole { get; set; }
     }
 }

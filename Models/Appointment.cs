@@ -22,6 +22,7 @@ namespace WebPortal.Models
         public int AppointmentStatusId { get; set; }
         public int UserId { get; set; }
         public Nullable<int> ServiceId { get; set; }
+        public Nullable<bool> isDeleted { get; set; }
     
         public virtual AppointmentStatu AppointmentStatu { get; set; }
         public virtual Service Service { get; set; }

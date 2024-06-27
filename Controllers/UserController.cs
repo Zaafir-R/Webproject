@@ -123,9 +123,12 @@ namespace WebPortal.Controllers
         }
 
         [HttpGet]
-        public ActionResult Login()
+        public ActionResult Login(bool flag = false)
         {
-            ViewBag.Verification = false;
+            User obj = (WebPortal.Models.User)Session["Currentuser"];
+            if (flag) { ViewBag.message = "Verification Email has been sent"; }
+            ViewBag.Verification = flag;
+            ViewBag.sent = flag;
             return View();
         }
 
@@ -135,6 +138,7 @@ namespace WebPortal.Controllers
         {
             booking_dbEntities db = new booking_dbEntities();
             ViewBag.Verification = false;
+            ViewBag.sent = false;
 
             var obj = db.Users.FirstOrDefault(a => a.Username.Equals(user.Username) && a.Password.Equals(user.Password));
             ViewBag.User = obj;
@@ -150,7 +154,7 @@ namespace WebPortal.Controllers
                 if (obj.UserStatu.Code.ToString() == "IACT")
                 { 
                     ViewBag.Verification = true;
-                    ViewBag.message = "Email Not Verified";
+                    ViewBag.message = obj.Email+ " Not Verified";
                     return View();
                 }
                 
@@ -217,10 +221,10 @@ namespace WebPortal.Controllers
                         db.Users.Add(user);
                         db.SaveChanges();
 
+                        string message = "Hi " + user.Firstname + "<br/><br/> Click on the link to verify your email and then go to the Log in page.<br/>http://zaafir.work.za.bz:8085/User/verifyaccount?Id=" + user.UserId;
+                        // string message = "Hi" + obj.Firstname + "<br/><br/> Click on the link to verify your email and then go to the Log in page.<br/>https://localhost:44321/user/verifyaccount?Id=" + user.UserId;
 
-                        
-                        //Helper.SendEmail(user.Email + " Verification", "Click on the link to verify and then go to log in page <br/>https://localhost:44321/user/verifyaccount?Id=" + user.UserId, user.Email);
-                        Helper.SendEmail(user.Email + " Verification", "Click on the link to verify and then go to log in page <br/>http://zaafir.work.za.bz:8085/User/verifyaccount?Id=" + user.UserId, user.Email);
+                        Helper.SendEmail(user.Email + " Verification", message, user.Email);
                         ViewBag.Message = "Account created and Verification Email has been Sent";
                     }
                     else
@@ -417,9 +421,13 @@ namespace WebPortal.Controllers
         public ActionResult RecieveVerification() 
         {
             var obj = (WebPortal.Models.User)Session["Currentuser"];
-            Helper.SendEmail(obj.Email + " Verification", "Click on the link to verify and then go to log in page <br/>http://zaafir.work.za.bz:8085/User/verifyaccount?Id="+ obj.UserId, obj.Email);
-            //Helper.SendEmail(obj.Email + " Verification", "Click on the link to verify and then go to log in page <br/>https://localhost:44321/user/verifyaccount?Id="+ obj.UserId, obj.Email);
-            return RedirectToAction("Index", "Home");
+
+            string message = "Hi  " + obj.Firstname + "<br/><br/> Click on the link to verify your email and then go to the Log in page. <br/>http://zaafir.work.za.bz:8085/User/verifyaccount?Id=" + obj.UserId;
+            // string message = "Hi" + obj.Firstname + "<br/><br/> Click on the link to verify your email and then go to the Log in page. <br/>https://localhost:44321/user/verifyaccount?Id=" + obj.UserId;
+
+            Helper.SendEmail(obj.Email + " Verification", message, obj.Email);
+            
+            return RedirectToAction("Login",new { flag = true });
 
         }
         

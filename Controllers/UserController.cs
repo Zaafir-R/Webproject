@@ -308,8 +308,8 @@ namespace WebPortal.Controllers
                     db.Appointments.AddOrUpdate(updatedAppointment);
                     db.SaveChanges();
 
-
-                    Helper.SendEmail("Appointment Status:" + updatedAppointment.AppointmentStatu.Name, "Your apppintment at " + updatedAppointment.DateandTime + " has been " + updatedAppointment.AppointmentStatu.Name + "<br/>" + updatedAppointment.AdminComment, updatedAppointment.User.Email);
+                    string message = "Hi " + updatedAppointment.User.Firstname + "<br/>Your apppintment at " + updatedAppointment.DateandTime + " has been " + updatedAppointment.AppointmentStatu.Name + ". <br/>" + updatedAppointment.AdminComment;
+                    Helper.SendEmail("Appointment Status:" + updatedAppointment.AppointmentStatu.Name,message, updatedAppointment.User.Email);
                    
                    
                     return RedirectToAction("AdminBookings");
@@ -369,7 +369,10 @@ namespace WebPortal.Controllers
             Appointment booking = db.Appointments.Find(keyValues: id);
             booking.AppointmentStatu = db.AppointmentStatus.Where((x) => x.Code=="CAN").FirstOrDefault();
             booking.AppointmentStatusId = booking.AppointmentStatu.AppointmentStatusId;
-            db.SaveChanges();
+            db.SaveChanges();   
+            string message = "Hi " + booking.User.Firstname + "<br/>Your appintment at " + booking.DateandTime + " has been Cancelled" ;
+            Helper.SendEmail("Appointment Status:" + booking.AppointmentStatu.Name, message, booking.User.Email);
+
             return RedirectToAction("UserBookings");
         }
         [HttpGet]

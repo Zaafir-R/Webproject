@@ -15,7 +15,7 @@
                 <div class="icon">
                     <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="/home/confirmedbookings" class="small-box-footer">View<i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -29,7 +29,7 @@
                 <div class="icon">
                     <i class="ion ion-stats-bars"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="/home/pendingbookings" class="small-box-footer">View<i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -43,7 +43,7 @@
                 <div class="icon">
                     <i class="ion ion-person-add"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="/home/cancelledbookings" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -51,16 +51,69 @@
 
             <div class="small-box bg-danger">
                 <div class="inner">
-                    <h3>Viewbag.deleted</h3>
+                    <h3>@ViewBag.deleted</h3>
                     <p>Deleted Appointments</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-pie-graph"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="/home/deletedbookings" class="small-box-footer">View<i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-12">
+            <label>Latest Appointements</label>
+            <table class="table table-bordered table-dark left">
+
+                <thead>
+                    <tr>
+                        <th>
+                            Meeting Time
+                        </th>
+                        <th>
+                            Service
+                        </th>
+                        <th>
+                            My Comment
+                        </th>
+                        <th>
+                            Admin Comment
+                        </th>
+                        <th>
+                            Appointment Status
+                        </th>
+                        @*<th>
+                        Date Created
+                    </th>*@
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{int count = 1;
+                        foreach (var item in ViewBag.latest)
+                        {
+                            if (count > 3) { break; }
+                            <tr>
+                                <td>@item.DateandTime</td>
+                                <td>@item.Service.Name</td>
+                                <td> @item.UserComment</td>
+                                <td>@item.AdminComment</td>
+                                <td>@item.AppointmentStatu.Name</td>
+                                @*<td>@item.CreatedDate</td>*@
+
+                                <td><a href="/user/CancelBooking?id=@item.AppointmentId">Cancel</a></td>
+                            </tr>
+                            count++;
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </div>

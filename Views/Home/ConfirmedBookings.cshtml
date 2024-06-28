@@ -2,17 +2,14 @@
     ViewBag.Title = "User Bookings";
     
 }
-<div>
+<div class="container">
     <div class="row">
         <div class="col-sm-12 text-center form-title">
-            <label>Bookings</label>
+            <h1>Confirmed Bookings</h1>
         </div>
 
     </div>
-    <div style="display: flex; justify-content:flex-end">
-        <a href="/user/makebooking" class="btn btn-primary btn-lg " role="button" aria-disabled="true">Book</a>
-
-    </div>
+   
     <br />
     <table class="table table-bordered table-dark left">
 
@@ -40,7 +37,7 @@
         </thead>
         <tbody>
             @{
-                foreach (var item in Model)
+                foreach (var item in ViewBag.confirmed)
                 {
                         <tr>
 

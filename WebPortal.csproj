@@ -245,6 +245,10 @@
     <Content Include="Views\User\AdminBookings.cshtml" />
     <Content Include="Views\User\ReviewBooking.cshtml" />
     <Content Include="Views\Home\AdminIndex.cshtml" />
+    <Content Include="Views\Home\ConfirmedBookings.cshtml" />
+    <Content Include="Views\Home\CancelledBookings.cshtml" />
+    <Content Include="Views\Home\PendingBookings.cshtml" />
+    <Content Include="Views\Home\DeletedBookings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

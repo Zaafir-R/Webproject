@@ -80,8 +80,9 @@ body {
     height: 100%;
 }
 
-.flex-content {
-    flex: 1;
+.smooth-border {
+    border-radius:12px;
+    padding:7px;
 }
 
 .down-right {

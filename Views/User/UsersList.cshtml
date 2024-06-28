@@ -5,18 +5,71 @@
 <div>
     <div class="row">
         <div class="col-sm-12 text-center form-title">
-            <h1>User List</h1>
-
+            <label>User List</label>
         </div>
 
     </div>
     <div style="display: flex; justify-content:flex-end">
         <a href="/user/userregister" class="btn btn-primary btn-lg " role="button" aria-disabled="true">Add</a>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-6">
+
+            <div class="small-box bg-info smooth-border">
+                <div class="inner">
+                    <h3>@ViewBag.confirmed</h3>
+                    <p>Confirmed Appointments</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <a href="/home/confirmedbookings" class="small-box-footer">View<i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+
+            <div class="small-box bg-success smooth-border">
+                <div class="inner">
+                    <h3>@ViewBag.pending</h3>
+                    <p>Pending Appointments</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                </div>
+                <a href="/home/pendingbookings" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+
+            <div class="small-box bg-warning smooth-border">
+                <div class="inner">
+                    <h3>@ViewBag.cancelled</h3>
+                    <p>Cancelled appointments</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                </div>
+                <a href="/home/cancelledbookings" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+
+            <div class="small-box bg-danger smooth-border">
+                <div class="inner">
+                    <h3>@ViewBag.deleted</h3>
+                    <p>Deleted Appointments</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-pie-graph"></i>
+                </div>
+                <a href="/home/deletedbookings" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
 
     </div>
-
-
-
     <table class="table table-bordered table-dark left">
         <thead>
             <tr>
@@ -48,7 +101,7 @@
         </thead>
         <tbody>
             @{
-                foreach (var item in Model)
+                foreach (var item in ViewBag.users)
                 {
                         <tr>
 

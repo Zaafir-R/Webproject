@@ -53,21 +53,15 @@ namespace WebPortal.Controllers
                     ViewBag.Message = user.Email +" already Exists";
                 }
                 
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Message = "Could not save the record.( " + ex.Message + ")";
-            }
-
-            return View();
-        }
-
-        public ActionResult UsersList()
         {
             var entities = new booking_dbEntities();
+            ViewBag.users = entities.Users.ToList();
 
-            var Userlist = entities.Users.ToList();
-            return View(Userlist);
+            ViewBag.totalusers = db.Users.Where(x =>x.IsDeleted == false).Count();
+            ViewBag.active = db.Users.Where(x => x.UserStatu.Code == "ACT" && x.IsDeleted == false).Count();
+            ViewBag.inactive = db.Users.Where(x => x.UserStatu.Code == "IACT" && x.IsDeleted == false).Count();
+            ViewBag.admin = db.Users.Where(x => x.UserRole.Code=="ADM").Count();
+            return View();
 
         }
 
@@ -279,7 +273,7 @@ namespace WebPortal.Controllers
             
             var db = new booking_dbEntities();
 
-            var bookings = db.Appointments.Where(x=>x.isDeleted==false).ToList();
+            var bookings = db.Appointments.Where(x=>x.isDeleted!=true).ToList();
             return View(bookings);
         }
 
@@ -331,7 +325,7 @@ namespace WebPortal.Controllers
             booking.isDeleted = true;
             db.Appointments.AddOrUpdate(booking);
             db.SaveChanges();
-            return RedirectToAction("AdminBookings ");
+            return RedirectToAction("AdminBookings");
 
         }
         [HttpGet]
@@ -358,6 +352,8 @@ namespace WebPortal.Controllers
                     
                     booking.UserId = user.UserId;
                     booking.LastModified = DateTime.Now;
+                    booking.CreatedDate = DateTime.Now;
+                    booking.isDeleted = false;
                     booking.AppointmentStatusId = db.AppointmentStatus.Where(x => x.Code == "PND").FirstOrDefault().AppointmentStatusId;
                     booking.AppointmentStatu = db.AppointmentStatus.Where(a => a.AppointmentStatusId == booking.AppointmentStatusId).FirstOrDefault();
                     booking.User = db.Users.Where(a => a.UserId == booking.UserId).FirstOrDefault();

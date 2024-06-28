@@ -8,15 +8,15 @@
         <EntityTypeShape EntityType="booking_dbModel.UserStatu" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="booking_dbModel.AppointmentStatu" Width="2.25" PointX="9.75" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="booking_dbModel.Service" Width="1.5" PointX="10.5" PointY="1.125" />
-        <EntityTypeShape EntityType="booking_dbModel.Appointment" Width="1.5" PointX="13.125" PointY="2.75" />
-        <AssociationConnector Association="booking_dbModel.FK__Appointme__Appoi__6477ECF3" />
-        <AssociationConnector Association="booking_dbModel.FK__Appointme__Servi__72C60C4A" />
         <EntityTypeShape EntityType="booking_dbModel.User" Width="1.5" PointX="7.5" PointY="1.125" />
-        <AssociationConnector Association="booking_dbModel.FK_User_Appointment" />
         <AssociationConnector Association="booking_dbModel.User_UserStatus" />
         <EntityTypeShape EntityType="booking_dbModel.sysdiagram" Width="1.5" PointX="0.5" PointY="2.625" />
         <EntityTypeShape EntityType="booking_dbModel.UserRole" Width="1.5" PointX="4.5" PointY="4" />
         <AssociationConnector Association="booking_dbModel.user_userrole" />
+        <EntityTypeShape EntityType="booking_dbModel.Appointment" Width="1.5" PointX="12.75" PointY="2.75" />
+        <AssociationConnector Association="booking_dbModel.FK__Appointme__Appoi__6477ECF3" />
+        <AssociationConnector Association="booking_dbModel.FK__Appointme__Servi__72C60C4A" />
+        <AssociationConnector Association="booking_dbModel.FK_User_Appointment" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

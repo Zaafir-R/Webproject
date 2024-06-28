@@ -13,6 +13,7 @@
     <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="ServiceId" Type="int" />
     <Property Name="isDeleted" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="AppointmentStatus">
     <Key>

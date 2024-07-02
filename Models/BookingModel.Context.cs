@@ -32,5 +32,6 @@ namespace WebPortal.Models
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<Appointment> Appointments { get; set; }
+        public virtual DbSet<PageInfo> PageInfoes { get; set; }
     }
 }

@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Common\Helper.cs" />
+    <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="Controllers\UserStatusController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
@@ -164,6 +165,9 @@
       <DependentUpon>BookingModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\IUserStatus.cs" />
+    <Compile Include="Models\PageInfo.cs">
+      <DependentUpon>BookingModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Service.cs">
       <DependentUpon>BookingModel.tt</DependentUpon>
     </Compile>
@@ -249,6 +253,7 @@
     <Content Include="Views\Home\CancelledBookings.cshtml" />
     <Content Include="Views\Home\PendingBookings.cshtml" />
     <Content Include="Views\Home\DeletedBookings.cshtml" />
+    <Content Include="Views\Maintenance\Editpage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

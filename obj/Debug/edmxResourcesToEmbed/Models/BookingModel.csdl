@@ -28,6 +28,7 @@
       <End Role="User" EntitySet="Users" />
       <End Role="Appointment" EntitySet="Appointments" />
     </AssociationSet>
+    <EntitySet Name="PageInfoes" EntityType="booking_dbModel.PageInfo" />
   </EntityContainer>
   <EntityType Name="UserStatu">
     <Key>
@@ -200,4 +201,28 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="PageInfo">
+    <Key>
+      <PropertyRef Name="PageId" />
+      <PropertyRef Name="Code" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="CreatedDate" />
+      <PropertyRef Name="LastModifiedDate" />
+      <PropertyRef Name="CreatedBy" />
+      <PropertyRef Name="LastModifiedBy" />
+      <PropertyRef Name="IsDeleted" />
+    </Key>
+    <Property Name="PageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Subtitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Content" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+    <Property Name="Subcontent" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastModifiedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+  </EntityType>
 </Schema>

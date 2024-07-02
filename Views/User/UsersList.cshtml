@@ -3,106 +3,106 @@
     
 }
 <div>
-    <div class="row">
-        <div class="col-sm-12 text-center form-title">
-            <label>User List</label>
-        </div>
-
-    </div>
-    <div style="display: flex; justify-content:flex-end">
-        <a href="/user/userregister" class="btn btn-primary btn-lg " role="button" aria-disabled="true">Add</a>
-    </div>
-    <div class="row">
-        <div class="col-lg-3 col-6">
-
-            <div class="small-box bg-info smooth-border">
-                <div class="inner">
-                    <h3>@ViewBag.confirmed</h3>
-                    <p>Confirmed Appointments</p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-bag"></i>
-                </div>
-                <a href="/home/confirmedbookings" class="small-box-footer">View<i class="fas fa-arrow-circle-right"></i></a>
+    <form action="/user/userslist" method="post">
+        <div class="row">
+            <div class="col-sm-12 form-title">
+                <h4><b><u>User List</u></b></h4>
+            </div>
+            <div style="display: flex; justify-content:flex-end">
+                <a href="/user/userregister" class="btn btn-primary btn-lg " role="button" aria-disabled="true">Add</a>
             </div>
         </div>
+        <br/>
+        <div class="row">
+            <div class="col-lg-3 col-6">
 
-        <div class="col-lg-3 col-6">
-
-            <div class="small-box bg-success smooth-border">
-                <div class="inner">
-                    <h3>@ViewBag.pending</h3>
-                    <p>Pending Appointments</p>
+                <div class="small-box bg-info smooth-border">
+                    <div class="inner">
+                        <h3>@ViewBag.totalusers</h3>
+                        <p>Total User</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+                    <button href="/user/userslist" class="small-box-footer btn-link" name="check" value="1">View<i class="fas fa-arrow-circle-right"></i></button>
                 </div>
-                <div class="icon">
-                    <i class="ion ion-stats-bars"></i>
-                </div>
-                <a href="/home/pendingbookings" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-        </div>
 
-        <div class="col-lg-3 col-6">
+            <div class="col-lg-3 col-6">
 
-            <div class="small-box bg-warning smooth-border">
-                <div class="inner">
-                    <h3>@ViewBag.cancelled</h3>
-                    <p>Cancelled appointments</p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-person-add"></i>
-                </div>
-                <a href="/home/cancelledbookings" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
+                <div class="small-box bg-success smooth-border">
+                    <div class="inner">
+                        <h3>@ViewBag.active</h3>
+                        <p>Active Users</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-stats-bars"></i>
+                    </div>
+                    <button href="/user/userslist" class="small-box-footer btn-link" name="check" value="2">View<i class="fas fa-arrow-circle-right"></i></button>                </div>
             </div>
-        </div>
 
-        <div class="col-lg-3 col-6">
+            <div class="col-lg-3 col-6">
 
-            <div class="small-box bg-danger smooth-border">
-                <div class="inner">
-                    <h3>@ViewBag.deleted</h3>
-                    <p>Deleted Appointments</p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-pie-graph"></i>
-                </div>
-                <a href="/home/deletedbookings" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
+                <div class="small-box bg-warning smooth-border">
+                    <div class="inner">
+                        <h3>@ViewBag.inactive</h3>
+                        <p>Inactive Users</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                    </div>
+                    <button href="/user/userslist" class="small-box-footer btn-link" name="check" value="3">View<i class="fas fa-arrow-circle-right"></i></button>                </div>
             </div>
-        </div>
 
-    </div>
-    <table class="table table-bordered table-dark left">
-        <thead>
-            <tr>
-                <th>
-                    Firstname
-                </th>
-                <th>
-                    Surname
-                </th>
-                <th>
-                    Username
-                </th>
-                <th>
-                    UserStatus
-                </th>
-                <th>
-                    Role
-                </th>
-                <th>
-                    Email
-                </th>
-                <th>
-                    Phone Number
-                </th>
-                <th>
-                    Action
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                foreach (var item in ViewBag.users)
-                {
+            <div class="col-lg-3 col-6">
+
+                <div class="small-box bg-danger smooth-border">
+                    <div class="inner">
+                        <h3>@ViewBag.admin</h3>
+                        <p>Admins</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-pie-graph"></i>
+                    </div>
+                    <button href="/user/userslist" class="small-box-footer btn-link" name="check" value="4">View<i class="fas fa-arrow-circle-right"></i></button>                </div>
+            </div>
+
+        </div>
+    </form>
+        <br />
+        <table class="table table-bordered table-dark left">
+            <thead>
+                <tr>
+                    <th>
+                        Firstname
+                    </th>
+                    <th>
+                        Surname
+                    </th>
+                    <th>
+                        Username
+                    </th>
+                    <th>
+                        UserStatus
+                    </th>
+                    <th>
+                        Role
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Phone Number
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in ViewBag.users)
+                    {
                         <tr>
 
                             <td>@item.Firstname</td>
@@ -117,12 +117,12 @@
 
                         </tr>
 
+                    }
+
                 }
 
-            }
+            </tbody>
 
-        </tbody>
-
-    </table>
+        </table>
 
 </div>

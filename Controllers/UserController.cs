@@ -26,7 +26,7 @@ namespace WebPortal.Controllers
 
         [HttpPost]
         public ActionResult UserRegister(User user)
-        { 
+        {
             booking_dbEntities db = new booking_dbEntities();
             ViewBag.Userstatus = db.UserStatus.ToList();
             ViewBag.Userroles = db.UserRoles.ToList();
@@ -50,19 +50,62 @@ namespace WebPortal.Controllers
                 }
                 else
                 {
-                    ViewBag.Message = user.Email +" already Exists";
+                    ViewBag.Message = user.Email + " already Exists";
                 }
-                
-        {
-            var entities = new booking_dbEntities();
-            ViewBag.users = entities.Users.ToList();
 
-            ViewBag.totalusers = db.Users.Where(x =>x.IsDeleted == false).Count();
+
+
+               
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = "Could not save the record.( " + ex.Message + ")";
+            }
+            return View();  
+        }
+        [HttpGet]
+        public ActionResult UsersList()
+        {
+            ViewBag.users = db.Users.Where(x => x.IsDeleted == false).ToList();
+            ViewBag.totalusers = db.Users.Where(x => x.IsDeleted == false).Count();
             ViewBag.active = db.Users.Where(x => x.UserStatu.Code == "ACT" && x.IsDeleted == false).Count();
             ViewBag.inactive = db.Users.Where(x => x.UserStatu.Code == "IACT" && x.IsDeleted == false).Count();
-            ViewBag.admin = db.Users.Where(x => x.UserRole.Code=="ADM").Count();
-            return View();
+            ViewBag.admin = db.Users.Where(x => x.UserRole.Code == "ADM").Count();
 
+            return View();
+        }
+        [HttpPost]
+        public ActionResult UsersList(int check)
+        {
+            if (ModelState.IsValid)
+            {
+
+                if (check == 1)
+                {
+                    ViewBag.users = db.Users.Where(x => x.IsDeleted == false).ToList();
+                }
+                else if (check == 2)
+                {
+                    ViewBag.users = db.Users.Where(x => x.UserStatu.Code == "ACT" && x.IsDeleted == false).ToList();
+                }
+                else if(check ==3)
+                {
+                    ViewBag.users = db.Users.Where(x => x.UserStatu.Code == "IACT" && x.IsDeleted == false).ToList();
+                }
+                else if (check == 4)
+                {
+                    ViewBag.users = db.Users.Where(x => x.UserRole.Code == "ADM").ToList();
+
+                }
+
+
+                ViewBag.totalusers = db.Users.Where(x => x.IsDeleted == false).Count();
+                ViewBag.active = db.Users.Where(x => x.UserStatu.Code == "ACT" && x.IsDeleted == false).Count();
+                ViewBag.inactive = db.Users.Where(x => x.UserStatu.Code == "IACT" && x.IsDeleted == false).Count();
+                ViewBag.admin = db.Users.Where(x => x.UserRole.Code == "ADM").Count();
+                return View();
+            }
+            return View();
         }
 
         private booking_dbEntities db = new booking_dbEntities();

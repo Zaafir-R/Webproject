@@ -36,7 +36,7 @@ namespace WebPortal.Controllers
         public ActionResult Editpage(PageInfo page)
         {
             var db = new booking_dbEntities();
-            ViewBag.pagetitle = page.Name;
+            ViewBag.pagetitle = page.Title;
             ViewBag.page = page;
 
             var updatedpage = db.PageInfoes.Where(x=>x.Code == page.Code).FirstOrDefault();
